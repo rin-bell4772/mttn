@@ -1,19 +1,16 @@
 .sidebar {
+    top: 0;
+    left: 0;
     margin: 0;
+    padding-top: 22.5px;
     height: 100vh;
     width: 30%;
     position: fixed;
-    top: 0;
-    left: 0;
-    padding-top: 22.5px;
+    overflow-x: hidden;
     border-right: 5px solid #374D2B;
     font-family: "Gochi Hand", cursive;
     color: #374D2B;
     background-color: #FFE8C8;
-}
-
-.sidebar h1 {
-    font-weight: 400;
 }
 
 .sidebar > div {
@@ -25,6 +22,7 @@
 }
 
 .sidebar > a {
+    width: 320px;
     padding: 10px 30px 5px 30px;
     border-style: solid;
     border-width: 5px;
@@ -39,4 +37,22 @@
     display: block;
     text-align: center;
     font-size: 1.5rem;
+}
+
+.sidebar > a:hover {
+    background-color: #ACD793;
+    transition: 0.3s;
+}
+
+.sidebar h1 {
+    font-weight: 400;
+}
+
+.closeButton {
+    font-size: 2em;
+}
+
+.closeButton:hover {
+    color: #ACD793;
+    transition: 0.3s;
 }
