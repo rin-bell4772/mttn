@@ -1,0 +1,14 @@
+@import url('https://fonts.googleapis.com/css2?family=Beiruti:wght@200..900&family=Gochi+Hand&family=Playwrite+AU+SA:wght@100..400&display=swap');
+
+.footer {
+    display: flex;
+    justify-content: center;
+    background-color: #84a471;
+    margin: 0;
+    padding: 10px;
+    width: 100%;
+    color: #FFFFFF;
+    font-family: "Gochi Hand", cursive;
+    font-weight: 400;
+    font-style: normal;
+}
