@@ -1,35 +1,41 @@
+import React, { useState } from 'react';
 import Option from './Option';
 
-type Option = {
+type OptionType = {
     text: string;
     isCorrect: boolean;
     onAnswer: (isCorrect: boolean) => void;
-}
+};
 
 type QuestionProps = {
     question: {
         id: number;
         qstn: string;
         answer: string;
-        options: Option[];
-    }
-}
+        options: OptionType[];
+    };
+    onAnswer: (isCorrect: boolean) => void;
+};
 
-export default function Question( { question }: QuestionProps) {
+export default function Question({ question, onAnswer }: QuestionProps) {
+    const [selectedOption, setSelectedOption] = useState<string | null>(null);
+
+    const handleSelect = (optionText: string, isCorrect: boolean) => {
+        setSelectedOption(optionText);
+        onAnswer(isCorrect);
+    };
+
     return (
         <div className="question">
-            <p> {question.id}. {question.qstn}</p>
+            <p>{question.id}. {question.qstn}</p>
             {question.options.map((option) => (
                 <Option
                     key={option.text}
-                    option= {{
-                        text: option.text,
-                        isCorrect: option.isCorrect,
-                        onAnswer: option.onAnswer
-                    }}
+                    option={option}
+                    isSelected={selectedOption === option.text}
+                    onSelect={() => handleSelect(option.text, option.isCorrect)}
                 />
             ))}
         </div>
-
-    )
+    );
 }

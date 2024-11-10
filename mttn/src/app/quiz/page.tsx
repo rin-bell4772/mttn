@@ -1,2 +1,14 @@
-import Option from '../components/Option';
-import Question from '../components/Question';
+"use client"
+import React from 'react';
+import Quiz from '../components/Quiz';
+const exampleQuestion = {
+    
+};
+
+export default function Page() {
+    return (
+        <div>
+            <Quiz />
+        </div>
+    );
+}

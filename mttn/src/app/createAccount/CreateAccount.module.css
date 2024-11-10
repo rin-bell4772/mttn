@@ -1,0 +1,88 @@
+@import url('https://fonts.googleapis.com/css2?family=Gochi+Hand&display=swap');
+
+.createAccount {
+  background-color: #ffe8c8;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: 'Gochi Hand', sans-serif; 
+  padding: 20px;
+}
+
+.formWrapper {
+  width: 100%;
+  max-width: 500px;
+  background-color: #ffe8c8;
+  border: 2px solid #374d2b;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.header {
+  color: #acd793;
+  font-size: 100px;
+  -webkit-text-stroke: 0.25px #374d2b;
+  text-shadow: 0px 4px 7px #000000;
+  text-align: center;
+  margin-bottom: 30px;
+  font-family: 'Gochi Hand', sans-serif;
+}
+
+.textWrapper {
+  color: #374d2b;
+  font-size: 18px;
+  text-align: center;
+  margin-top: 20px;
+  font-family: 'Gochi Hand', sans-serif;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+}
+
+.label {
+  color: #374d2b;
+  font-size: 20px;
+  font-family: 'Gochi Hand', sans-serif;
+  margin-bottom: 8px;
+}
+
+.inputField {
+  width: 100%;
+  padding: 12px;
+  font-size: 16px;
+  border: 3px solid #374d2b;
+  background-color: #fff;
+  border-radius: 35px;
+  margin-bottom: 10px;
+  color: #333;
+}
+
+.createAccountButton {
+  padding: 12px;
+  font-size: 25px;
+  background-color: #83a470;
+  color: #fff;
+  border-color: #374d2b;
+  border-radius: 35px;
+  cursor: pointer;
+  font-family: 'Gochi Hand', sans-serif;
+}
+
+.createAccountButton:hover {
+  background-color: #6b905c;
+}
+
+.loginLink {
+  text-align: center;
+  color: #374d2b;
+  font-size: 16px;
+  text-decoration: none;
+}
+
+.loginLink:hover {
+  text-decoration: underline;
+}
