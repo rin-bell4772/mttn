@@ -15,6 +15,7 @@ type ChangeSettingsProps = {
 export default function ChangeSettings({ settings }: ChangeSettingsProps) {
     const [email, setEmail] = useState(settings?.email || '');
     const [username, setUsername] = useState(settings?.username || '');
+    const [profilePicture, setProfilePicture] = useState(settings?.profilePicture || '');
     const router = useRouter();
 
     const emailHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -23,6 +24,10 @@ export default function ChangeSettings({ settings }: ChangeSettingsProps) {
 
     const usernameHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
         setUsername(e.target.value);
+    }
+
+    const profilePictureHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
+        setProfilePicture(e.target.value);
     }
 
     const submitHandler = (e: React.FormEvent) => {
@@ -57,7 +62,16 @@ export default function ChangeSettings({ settings }: ChangeSettingsProps) {
                         value={username}
                         onChange={usernameHandler}
                     />
-
+                    <label htmlFor="profilePicture" className={styles.label}>
+                        Profile Picture
+                    </label>
+                    <input className={styles.inputField}
+                        type="text"
+                        id="profilePicture"
+                        placeholder="enter url"
+                        value={profilePicture}
+                        onChange={profilePictureHandler}
+                    />
                     <button className={styles.changeButton}>Change</button>
                 </form>
             </div>
