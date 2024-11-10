@@ -1,6 +1,7 @@
 .settings {
     background-color: #ffe8c8; 
     height: auto;
+    min-height: 490px;
     display: flex;
     justify-content: center;
     align-items: top;
