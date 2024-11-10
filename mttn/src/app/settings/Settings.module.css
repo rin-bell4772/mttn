@@ -1,0 +1,80 @@
+.settings {
+    
+    height: auto;
+    min-height: 490px;
+    display: flex;
+    justify-content: center;
+    align-items: top;
+    font-family: 'Gochi Hand', sans-serif; 
+    padding: 20px;
+
+}
+
+.settings p {
+    color: #374d2b;
+    font-size: 18px;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.formWrapper {
+    width: 100%;
+    max-width: 500px;
+    height: fit-content;
+    padding: 40px;
+    border: 2px solid #374d2b;
+    background-color: #ffe8c8;
+    border-radius: 12px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.header {
+    color: #acd793;
+    font-size: xx-large;
+    -webkit-text-stroke: 0.25px #374d2b;
+    text-shadow: 0px 4px 7px #000000;
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.innerCard {
+    background-color: #ACD793;
+    padding: 20px;
+    border-radius: 12px;
+    border: 2px solid #374d2b;
+    box-shadow: 0 4px 4px #000000;
+}
+
+.settingAndLink {
+    display: flex;
+    justify-content: space-between;
+}
+
+.profilePicture {
+    width: fit-content;
+    max-width: 500px;
+    height: fit-content;
+    padding: 40px;
+    border: 2px solid #374d2b;
+    background-color: #ffe8c8;
+    border-radius: 12px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+}
+
+.profilePicture a {
+    color: #374d2b;
+    font-size: 18px;
+    text-align: center;
+    margin: 10px 0 0 0;
+}
+
+.profileImage {
+    border-radius: 50%;
+    overflow: hidden;
+    height: 200px;
+    width: 200px;
+    object-fit: cover;
+}
+
