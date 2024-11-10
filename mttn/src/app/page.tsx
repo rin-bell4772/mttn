@@ -10,7 +10,15 @@ export default function Home() {
     <>
       <Nav />
       <Sidebar />
-      
+      <div className="flex gap-4 p-4">
+      <Link href="/login">
+      <Button type="submit">Log in</Button>
+      </Link>
+
+      <Link href="/createAccount">
+      <Button type= "submit">Create Account</Button>
+      </Link>
+      </div>
       <Footer />
     </>
   );
