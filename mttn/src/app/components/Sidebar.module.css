@@ -1,0 +1,42 @@
+.sidebar {
+    margin: 0;
+    height: 100vh;
+    width: 30%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    padding-top: 22.5px;
+    border-right: 5px solid #374D2B;
+    font-family: "Gochi Hand", cursive;
+    color: #374D2B;
+    background-color: #FFE8C8;
+}
+
+.sidebar h1 {
+    font-weight: 400;
+}
+
+.sidebar > div {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-left: 40px;
+    margin-right: 60px;
+}
+
+.sidebar > a {
+    padding: 10px 30px 5px 30px;
+    border-style: solid;
+    border-width: 5px;
+    border-color: #374D2B;
+    border-radius: 25px;
+    margin: 25px;
+    margin-left: 40px;
+    margin-right: 40px;
+    color: #374D2B;
+    background-color: #FFF5EC;
+    text-decoration: none;
+    display: block;
+    text-align: center;
+    font-size: 1.5rem;
+}
