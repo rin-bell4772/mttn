@@ -1,17 +1,19 @@
 "use client";
 import { useState } from 'react';
-import NewFlashcards from "./createNewSet";
+import NewFlashcards from "./CreateNewSet";
 import Nav from "../components/Nav";
 import Footer from "../components/Footer";
+import Flashcard from './Flashcard';
 
 
-type FlashCard = {
+
+type Flashcard = {
     id: number;
     term: string;
     definition: string;
 };
 
-const dummyArr: FlashCard[] = [
+const dummyArr: Flashcard[] = [
     {
         id: 1,
         term: 'term 1',
@@ -29,10 +31,10 @@ const dummyArr: FlashCard[] = [
     },
 ];
 
-export default function CreateNewSet() {
-    const [cards, setCards] = useState<FlashCard[]>(dummyArr);
+export default function CreateNewSet(): JSX.Element {
+    const [cards, setCards] = useState<Flashcard[]>(dummyArr);
 
-    const addCardHandler = (card: FlashCard) => {
+    const addCardHandler = (card: Flashcard) => {
         setCards((previousCards) => [...previousCards, card]);
     };
 
@@ -43,5 +45,5 @@ export default function CreateNewSet() {
             <NewFlashcards cards={cards}/>
             <Footer />
         </>
-    )
+    );
 }
