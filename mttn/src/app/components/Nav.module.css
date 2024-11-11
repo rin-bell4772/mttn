@@ -2,11 +2,19 @@
 
 .nav {
     display: flex;
+    align-items: center;
     justify-content: space-between;
     background-color: #84a471;
     margin: 0;
     padding: 2px;
     width: 100%;
+}
+
+.logos {
+    display: flex;
+    align-items: center;
+    margin: 1%;
+    gap: 20%;
 }
 
 .login {
