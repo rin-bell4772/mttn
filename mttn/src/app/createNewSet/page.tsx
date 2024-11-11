@@ -18,20 +18,20 @@ type Flashcard = {
 const dummyArr: Flashcard[] = [
     {
         id: 1,
-        term: 'term 1',
-        definition: 'definition 1', 
+        term: 'Red Panda',
+        definition: 'Mammal that is cute!', 
         image: 'https://classroomclipart.com/images/gallery/Clipart/Animals/cute-small-baby-red-panda-animal-clipart.jpg',
     },
     {
         id: 2,
-        term: 'term 2',
-        definition: 'definition 2',
+        term: 'Starfish',
+        definition: 'In the ocean omg',
         image: 'https://www.shutterstock.com/image-vector/vector-starfish-icon-under-sea-600nw-2279259637.jpg',
     },
     {
         id: 3,
-        term: 'term 3',
-        definition: 'definition 3',
+        term: 'Lion',
+        definition: 'Lion king is a rlly good movie',
         image: 'https://classroomclipart.com/image/static2/preview2/cute-animal-lion-clipart-33697.jpg',
     },
 ];

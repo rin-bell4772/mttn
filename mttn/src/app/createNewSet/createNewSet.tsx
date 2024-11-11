@@ -4,12 +4,13 @@ import Card from '../components/Card';
 import Flashcard from './Flashcard';
 import Button from '../components/Button';
 import AddFlashcard from '../components/AddFlashcard';
-
+import Link from 'next/link';
 
 type Flashcards = {
     id: number;
     term: string;
     definition: string;
+    image: string;
 };
 
 type cardData = {
@@ -20,8 +21,9 @@ export default function NewFlashcards({cards}: cardData) {
     return (
        <div>
             <div className={styles.header}>
-                <p>UNTITLED</p>
-                <p>Save</p>
+                <p>ANIMALS</p>
+                <Link href="./flashcardSet">Save</Link>
+                
             </div>
 
             <div>

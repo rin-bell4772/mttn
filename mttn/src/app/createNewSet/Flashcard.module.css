@@ -3,8 +3,9 @@
 }
 
 .cardCSS {
-    display: flex;
-    justify-content: space-around;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    
     font-size:larger;
 
     border: 3px solid #374d2b;
@@ -13,4 +14,7 @@
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     
     margin: 2% 10% 2% 10%;
+    padding: 1%;
+
+    
 }
