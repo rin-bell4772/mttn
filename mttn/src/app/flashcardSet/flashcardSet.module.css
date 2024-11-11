@@ -1,6 +1,6 @@
 .flashcardPage {
     display: flex;
-    align-items: space-between;
+    align-items: center;
     flex-direction: column;
     
 
@@ -20,7 +20,6 @@
     border: 2px solid #374d2b;
     color: #374d2b;
 
-    
     border-radius: 12px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   
