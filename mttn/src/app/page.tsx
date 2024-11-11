@@ -9,7 +9,7 @@ import Link from "next/link";
 export default function Home() {
   return (
     <>
-      <Nav />
+      <Nav isLoggedIn={false}/>
       <Sidebar />
       
       <div className={styles.container}>
