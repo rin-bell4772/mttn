@@ -6,7 +6,7 @@ import Footer from "../components/Footer";
 const CreateAccountPage: React.FC = () => {
   return (
     <div>
-      <Nav /> 
+      <Nav isLoggedIn={false}/> 
       <CreateAccount /> 
       <Footer />
     </div>

@@ -6,7 +6,7 @@ import Footer from "../components/Footer";
 const LoginPage: React.FC = () => {
   return (
     <div>
-      <Nav /> 
+      <Nav isLoggedIn={false}/> 
       <Login /> 
       <Footer />
     </div>
