@@ -5,8 +5,8 @@
 .cardCSS {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
-    
     font-size:larger;
+    text-align:center;
 
     border: 3px solid #374d2b;
     background-color: #ffe8c8;

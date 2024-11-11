@@ -2,7 +2,7 @@ import Card from '../components/Card';
 import styles from './Flashcard.module.css';
 import AddStudySet from '../components/AddStudySet';
 import Image from 'next/image';
-import ImageIcon from '../components/AddImage';
+
 
 type FlashcardProps = {
     flashcard: {
@@ -25,7 +25,6 @@ export default function Flashcard({flashcard}: FlashcardProps) {
                     width={100} height={100}
                     priority
                 />
-                
             </div>
         </Card>
 
