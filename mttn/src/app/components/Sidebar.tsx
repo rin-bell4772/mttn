@@ -26,7 +26,6 @@ export default function Sidebar() {
             </div>
             <Link href="./dashboard">Dashboard</Link>
             <Link href="./settings">Account Settings</Link>
-            <Link href="./stats">Stats</Link>
         </div>
     );
 }
