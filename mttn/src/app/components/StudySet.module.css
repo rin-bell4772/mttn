@@ -3,10 +3,12 @@
 .studySet {
     height: 140px;
     width: 200px;
-    flex-shrink: 0;
     display: flex;
+    flex-direction: row; 
+    flex-shrink: 0;
     align-items: center;
     justify-content: center;
+    gap: 15px;
     color: #374D2B;
     background-color: #ACD793;
     font-family: "Gochi Hand", cursive;
@@ -15,5 +17,4 @@
     border-radius: 20px;
     border-color: #374D2B;
     border-width: 3px;
-    margin: 1%;
 }
