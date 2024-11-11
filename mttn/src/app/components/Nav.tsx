@@ -1,13 +1,25 @@
 import styles from './Nav.module.css';
 import Link from 'next/link';
 
-export default function Nav() {
+type NavProps = {
+  // add props here
+  isLoggedIn: boolean;
+};
+
+export default function Nav({ isLoggedIn }: NavProps) {
   return (
     <nav className={styles.nav}>
       <p className={styles.icon}>Icon</p>
+      {isLoggedIn ? 
+      <Link href="/">  
+        <p className={styles.text}>Log out</p>
+      </Link> 
+      :
       <Link href="/login">
-        <p className={styles.login}>Log in</p>
+        <p className={styles.text}>Log in</p>
       </Link>
+    }
+
     </nav>
   );
 }
