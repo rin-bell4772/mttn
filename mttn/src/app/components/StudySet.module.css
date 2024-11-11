@@ -1,8 +1,8 @@
 @import url('https://fonts.googleapis.com/css2?family=Beiruti:wght@200..900&family=Gochi+Hand&family=Playwrite+AU+SA:wght@100..400&display=swap');
 
 .studySet {
-    width: 200px;
     height: 140px;
+    width: 200px;
     flex-shrink: 0;
     display: flex;
     align-items: center;

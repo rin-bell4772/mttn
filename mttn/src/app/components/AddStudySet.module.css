@@ -1,14 +1,16 @@
 .addStudySet {
-    width: 200px;
     height: 140px;
+    width: 200px;
     display: flex;
+    flex-shrink: 0;
     align-items: center;
     justify-content: center;
-    background-color: rgba(172, 215, 147, 0.5);
+    background-color: #acd79380;
     border-style: solid;
     border-radius: 20px;
     border-color: #374D2B;
     border-width: 3px;
+    margin: 1%;
 }
 
 .addStudySet img {
