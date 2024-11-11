@@ -4,7 +4,7 @@ import Link from 'next/link';
 import styles from './Sidebar.module.css';
 
 export default function Sidebar() {
-    function handleClick() {
+    function closeNav() {
         const sidebar = document.getElementById("sidebar");
         if (sidebar) {
             sidebar.style.width = "0";
@@ -22,11 +22,10 @@ export default function Sidebar() {
         <div id="sidebar" className={styles.sidebar}>
             <div>
                 <h1>NAVIGATION</h1>
-                <Link href="#" onClick={handleClick} className={styles.closeButton}>&times;</Link>
+                <a href="#" onClick={closeNav} className={styles.closeButton}>&times;</a>
             </div>
             <Link href="./dashboard">Dashboard</Link>
             <Link href="./settings">Account Settings</Link>
-            <Link href="./stats">Stats</Link>
         </div>
     );
 }

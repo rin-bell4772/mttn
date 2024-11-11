@@ -1,0 +1,17 @@
+@import url('https://fonts.googleapis.com/css2?family=Beiruti:wght@200..900&family=Gochi+Hand&family=Playwrite+AU+SA:wght@100..400&display=swap');
+
+.studySet {
+    width: 200px;
+    height: 140px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #374D2B;
+    background-color: #ACD793;
+    font-family: "Gochi Hand";
+    font-size: large;
+    border-style: solid;
+    border-radius: 20px;
+    border-color: #374D2B;
+    border-width: 3px;
+}

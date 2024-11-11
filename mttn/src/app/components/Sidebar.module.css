@@ -2,7 +2,7 @@
     top: 0;
     left: 0;
     margin: 0;
-    padding-top: 22.5px;
+    padding-top: 1.5%;
     height: 100vh;
     width: 30%;
     position: fixed;
@@ -15,22 +15,22 @@
 
 .sidebar > div {
     display: flex;
-    justify-content: space-between;
     align-items: center;
-    margin-left: 40px;
-    margin-right: 60px;
+    justify-content: space-between;
+    margin-left: 15%;
+    margin-right: 15%;
 }
 
 .sidebar > a {
-    width: 320px;
+    width: 60%;
     padding: 10px 30px 5px 30px;
     border-style: solid;
     border-width: 5px;
     border-color: #374D2B;
     border-radius: 25px;
-    margin: 25px;
-    margin-left: 40px;
-    margin-right: 40px;
+    margin-left: 10%;
+    margin-right: 10%;
+    margin-bottom: 5%;
     color: #374D2B;
     background-color: #FFF5EC;
     text-decoration: none;
@@ -49,7 +49,9 @@
 }
 
 .closeButton {
-    font-size: 2em;
+    color: #374D2B;
+    text-decoration: none;
+    font-size: 3em;
 }
 
 .closeButton:hover {
