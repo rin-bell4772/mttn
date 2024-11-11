@@ -28,11 +28,14 @@ export default function NewFlashcards({cards}: cardData) {
                 {cards.map((card) => (
                     <Flashcard key={card.id} flashcard={card}/>
                 ))}
+                
             </div>
             
-            <Card>
-                <AddFlashcard />
-            </Card>
+            <div className={styles.addCard}>
+                <Card>
+                    <AddFlashcard />
+                </Card>
+            </div>
             
         </div>
     )
