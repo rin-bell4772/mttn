@@ -1,0 +1,71 @@
+.flashcardPage {
+    display: flex;
+    align-items: space-between;
+    flex-direction: column;
+    
+
+    color: #374d2b;
+}
+
+.card {
+    display: flex;
+    
+    flex-direction: column;
+
+    width: fit-content;
+    padding-left: 20%;
+    padding-right: 20%;
+
+    background-color: #ACD793;
+    border: 2px solid #374d2b;
+    color: #374d2b;
+
+    
+    border-radius: 12px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  
+}
+
+.upper {
+    display: flex;
+    justify-content: space-between;
+
+    margin-left: 2%;
+    margin-right: 2%;
+}
+
+.flipArrow {
+    font-size: xx-large;
+    margin-right: 2%;
+    margin-bottom: 0px;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.termDef {
+    display: flex;
+    justify-content: center;
+    font-size: x-large;
+    margin-top: 5%;
+
+}
+
+.cardArrows {
+    display: flex;
+    align-items: center;
+}
+
+.arrows {
+    font-size: xx-large;
+}
+
+.time {
+    background-color: #FFE8C8;
+    border: 2px solid #374d2b;
+    color: #374d2b;
+    border-radius: 12px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 2%;
+    display: flex;
+    justify-content: flex-end;
+}
