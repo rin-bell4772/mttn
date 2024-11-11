@@ -1,0 +1,9 @@
+.dashboard {
+    margin: 3%;
+}
+
+.dashboard > h1 {
+    color: #374D2B;
+    font-family: "Gochi Hand", cursive;
+    font-weight: 100;
+}
