@@ -6,10 +6,10 @@ import add_icon from '../images/add_icon.png';
 
 export default function AddStudySet() {
     return (
-        <div className={styles.addStudySet}>
-            <Link href="../flashcardSet">
-                <Image src={add_icon} alt="Add Icon"/>
-            </Link>
-        </div>
+        <Link href="../flashcardSet">
+            <div className={styles.addStudySet}>
+                    <Image src={add_icon} alt="Add Icon"/>
+            </div>
+        </Link>
     );
 }
