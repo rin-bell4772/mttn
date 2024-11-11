@@ -2,6 +2,7 @@ import styles from './flashcardSet.module.css';
 
 export default function FlashcardSet() {
     return (
+      
         <div className={styles.flashcardPage}>
             <h1>TITLE</h1>
             <div className={styles.cardArrows}>
