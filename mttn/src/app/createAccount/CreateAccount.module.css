@@ -2,7 +2,7 @@
 
 .createAccount {
   
-  height: auto;
+  height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -63,7 +63,7 @@
 }
 
 .createAccountButton {
-  padding: 12px;
+  padding: 1%;
   font-size: 25px;
   background-color: #83a470;
   color: #fff;
