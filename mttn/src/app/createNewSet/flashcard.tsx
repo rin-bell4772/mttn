@@ -1,5 +1,6 @@
 import Card from '../components/Card';
 import styles from './Flashcard.module.css';
+import AddStudySet from '../components/AddStudySet';
 
 type FlashcardProps = {
     flashcard: {
@@ -12,10 +13,11 @@ type FlashcardProps = {
 export default function Flashcard({flashcard}: FlashcardProps) {
     return (
         <Card>
-            <div>
+            <div className={styles.cardCSS}>
                 <p>{flashcard.term}</p>
                 <p>{flashcard.definition}</p>
             </div>
         </Card>
+
     )
 }

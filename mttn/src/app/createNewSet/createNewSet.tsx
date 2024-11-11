@@ -3,6 +3,8 @@ import styles from './CreateNewSet.module.css';
 import Card from '../components/Card';
 import Flashcard from './Flashcard';
 import Button from '../components/Button';
+import AddFlashcard from '../components/AddFlashcard';
+
 
 type Flashcards = {
     id: number;
@@ -22,12 +24,15 @@ export default function NewFlashcards({cards}: cardData) {
                 <p>Save</p>
             </div>
 
-            <div className={styles.cardCSS}>
+            <div>
                 {cards.map((card) => (
                     <Flashcard key={card.id} flashcard={card}/>
                 ))}
             </div>
             
+            <Card>
+                <AddFlashcard />
+            </Card>
             
         </div>
     )
