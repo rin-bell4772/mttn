@@ -1,6 +1,7 @@
 import styles from './Nav.module.css';
 import Link from 'next/link';
 import Image from 'next/image';
+import sidebar from '../images/sidebar.png';
 
 
 type NavProps = {
@@ -11,7 +12,11 @@ type NavProps = {
 export default function Nav({ isLoggedIn }: NavProps) {
   return (
     <nav className={styles.nav}>
-      <Image src="/images/mttnLogo.png" alt="logo" width={40} height={40} />
+      <div className={styles.logos}>
+        <Image src={sidebar} alt="Sidebar icon"/>
+        <Image src="/images/mttnLogo.png" alt="logo" width={40} height={40} />
+      </div>
+  
       {isLoggedIn ? 
       <Link href="/">  
         <p className={styles.text}>Log out</p>

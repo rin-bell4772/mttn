@@ -10,10 +10,11 @@
     border-radius: 20px;
     border-color: #374D2B;
     border-width: 3px;
-    margin: 1%;
 }
 
 .addStudySet img {
     height: 40%;
     width: 30%;
+    display: flex;
+    justify-content: center;
 }

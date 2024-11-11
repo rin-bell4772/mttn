@@ -17,7 +17,7 @@ export default function Dashboard() {
     return (
         <div className={styles.dashboard}>
            <h1>RECENT</h1>
-           <div className={styles.scroll}>
+           <div className={styles.grid}>
                 {recent.map((set, index) => (
                     <StudySet key={index} title={set.title} />
                 ))}
