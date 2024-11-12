@@ -1,8 +1,10 @@
+"use client";
 import styles from './Nav.module.css';
 import Link from 'next/link';
 import Image from 'next/image';
 import sidebar from '../images/sidebar.png';
-
+import Sidebar from './Sidebar';
+import { useState } from 'react';
 
 type NavProps = {
   // add props here
@@ -10,11 +12,19 @@ type NavProps = {
 };
 
 export default function Nav({ isLoggedIn }: NavProps) {
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+
+  const toggleSidebar = () => {
+    setIsSidebarOpen(!isSidebarOpen); 
+  };
+
   return (
     <nav className={styles.nav}>
       <div className={styles.logos}>
           {isLoggedIn && (
-            <Image src={sidebar} alt="Sidebar icon" />
+            <a href="#" onClick={toggleSidebar}>
+              <Image src={sidebar} alt="Sidebar icon" />
+            </a>
           )}
           <Image src="/images/mttnLogo.png" alt="logo" width={40} height={40} />
       </div>
@@ -27,7 +37,7 @@ export default function Nav({ isLoggedIn }: NavProps) {
         <p className={styles.text}>Log in</p>
       </Link>
     }
-
+    {isSidebarOpen && <Sidebar />}
     </nav>
   );
 }
