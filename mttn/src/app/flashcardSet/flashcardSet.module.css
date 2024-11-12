@@ -1,20 +1,32 @@
+
 .flashcardPage {
     display: flex;
-    align-items: center;
-    flex-direction: column;
     
-
+    flex-direction: column;
     color: #374d2b;
 }
 
-.card {
-    display: flex;
-    
-    flex-direction: column;
+.heading {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    margin: 2%;
+}
 
-    width: fit-content;
-    padding-left: 20%;
-    padding-right: 20%;
+.mainCard {
+    display:flex;
+    align-items:center;
+    justify-content: center;
+}
+
+
+.card {
+    width: 60%;
+    height: 200px;
+    
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
 
     background-color: #ACD793;
     border: 2px solid #374d2b;
@@ -22,42 +34,15 @@
 
     border-radius: 12px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  
+    
+    margin: 2%;
 }
 
-.upper {
-    display: flex;
-    justify-content: space-between;
-
-    margin-left: 2%;
-    margin-right: 2%;
-}
-
-.flipArrow {
-    font-size: xx-large;
-    margin-right: 2%;
-    margin-bottom: 0px;
-    display: flex;
-    justify-content: flex-end;
-}
-
-.termDef {
+.shuffling {
     display: flex;
     justify-content: center;
-    font-size: x-large;
-    margin-top: 5%;
 
-}
-
-.cardArrows {
-    display: flex;
-    align-items: center;
-    
-}
-
-.arrows {
-    font-size: xx-large;
-    
+    margin-bottom: 2%;
 }
 
 .time {
@@ -68,5 +53,13 @@
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     padding: 2%;
     display: flex;
-    justify-content: flex-end;
+    justify-content: center;
+    width: 20%;
+}
+
+.bottom {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    margin: 2%;
 }
