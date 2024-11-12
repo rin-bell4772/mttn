@@ -13,19 +13,11 @@ export default function Nav({ isLoggedIn }: NavProps) {
   return (
     <nav className={styles.nav}>
       <div className={styles.logos}>
-        <Image src={sidebar} alt="Sidebar icon"/>
-        {isLoggedIn ?
-        <Link href='/dashboard'>
+          {isLoggedIn && (
+            <Image src={sidebar} alt="Sidebar icon" />
+          )}
           <Image src="/images/mttnLogo.png" alt="logo" width={40} height={40} />
-        </Link>
-        :
-        <Link href='/'>
-          <Image src="/images/mttnLogo.png" alt="logo" width={40} height={40} />
-        </Link>
-      }
-        
       </div>
-  
       {isLoggedIn ? 
       <Link href="/">  
         <p className={styles.text}>Log out</p>
