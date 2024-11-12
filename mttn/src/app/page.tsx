@@ -10,7 +10,6 @@ export default function Home() {
   return (
     <>
       <Nav isLoggedIn={false}/>
-      <Sidebar />
       
       <div className={styles.container}>
         <h1 className={styles.title}>MTTN</h1>
