@@ -26,7 +26,16 @@ export default function Nav({ isLoggedIn }: NavProps) {
               <Image src={sidebar} alt="Sidebar icon" />
             </a>
           )}
-          <Image src="/images/mttnLogo.png" alt="logo" width={40} height={40} />
+          {isLoggedIn ?
+            <Link href='/dashboard'>
+              <Image src="/images/mttnLogo.png" alt="logo" width={40} height={40} />
+            </Link>
+            :
+            <Link href='/'>
+              <Image src="/images/mttnLogo.png" alt="logo" width={40} height={40} />
+            </Link>
+          }
+        
       </div>
       {isLoggedIn ? 
       <Link href="/">  
