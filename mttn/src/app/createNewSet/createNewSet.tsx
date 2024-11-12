@@ -23,7 +23,6 @@ export default function NewFlashcards({cards}: cardData) {
             <div className={styles.header}>
                 <p>ANIMALS</p>
                 <Link href="./flashcardSet">Save</Link>
-                
             </div>
 
             <div>

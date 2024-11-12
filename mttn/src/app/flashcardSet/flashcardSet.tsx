@@ -27,8 +27,13 @@ export default function FlashcardSet() {
                         <p>1 of 10</p>
                         <Image src={star} alt={"star"} width={20}/>
                     </div>
-                    <p className={styles.term}> Card</p>  
-                    <Image src={flipArrow} alt={"flip"} width={20}/>
+                    <div className={styles.termDef}>
+                        <p>Term</p>  
+                    </div>
+                    <div className={styles.turnArrow}>
+                        <Image src={flipArrow} alt={"flip"} width={20}/>
+                    </div>
+
                 </div>
                 <Image src={rightArrow} alt={"right arrow"} width={50}/>
                         

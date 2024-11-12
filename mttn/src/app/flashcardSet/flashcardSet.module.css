@@ -18,7 +18,42 @@
     justify-content: center;
 }
 
+.card {
+    width: 60%;
+    height: 200px;
+    
+    background-color: #ACD793;
+    border: 2px solid #374d2b;
+    color: #374d2b;
 
+    border-radius: 12px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    
+    margin: 2%;
+    
+    display: grid;
+    grid-template-rows: 1fr 1fr 1fr;
+}
+
+.upper {
+    display: flex;
+    justify-content: space-between;
+    margin: 2%;
+}
+
+.termDef {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.turnArrow {
+    display:flex;
+    align-items: flex-end;
+    justify-content: flex-end;
+    margin: 2%;
+}
+/*
 .card {
     width: 60%;
     height: 200px;
@@ -37,6 +72,7 @@
     
     margin: 2%;
 }
+    */
 
 .shuffling {
     display: flex;

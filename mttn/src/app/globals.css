@@ -46,7 +46,8 @@ a {
 
 body {
   background-image: url("./images/image.png");
-  background-size: auto;
+  background-repeat: no-repeat;
+  background-size: cover;
   margin: 0 0;
   font-family: 'Gochi Hand', sans-serif; 
   width: auto;
