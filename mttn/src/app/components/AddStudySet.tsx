@@ -6,7 +6,7 @@ import add_icon from '../images/add_icon.png';
 
 export default function AddStudySet() {
     return (
-        <Link href="../flashcardSet">
+        <Link href="../createNewSet">
             <div className={styles.addStudySet}>
                     <Image src={add_icon} alt="Add Icon"/>
             </div>
