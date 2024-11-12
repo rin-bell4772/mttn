@@ -7,8 +7,7 @@ const recent = [
     { title: 'Linear Algebra' },
     { title: 'Chemistry' },
     { title: 'French' },
-    { title: 'Calculus II' },
-    { title: 'History' }
+    { title: 'History' },
 ];
 
 const favorites = [];
