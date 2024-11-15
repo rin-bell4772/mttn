@@ -8,6 +8,7 @@ const recent = [
     { title: 'Chemistry' },
     { title: 'French' },
     { title: 'History' },
+    { title: 'Calculus I' }
 ];
 
 const favorites = [];
