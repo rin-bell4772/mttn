@@ -12,13 +12,14 @@
     display: flex;
     overflow-x: auto; 
     overflow-y: hidden; 
-    gap: 5%;
+    gap: 7.5%;
     max-width: 100%;
 
 }
 
 .grid {
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr;
-    gap: 7%; 
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+    gap: 5%; 
+    row-gap: 10%;
 }
