@@ -1,30 +1,30 @@
 "use client";
+import { useState } from 'react';
 import styles from './Nav.module.css';
-import Link from 'next/link';
-import Image from 'next/image';
 import sidebar from '../images/sidebar.png';
 import Sidebar from './Sidebar';
-import { useState } from 'react';
+import Link from 'next/link';
+import Image from 'next/image';
 
 type NavProps = {
-  // add props here
   isLoggedIn: boolean;
 };
 
 export default function Nav({ isLoggedIn }: NavProps) {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
-  const toggleSidebar = () => {
-    setIsSidebarOpen(!isSidebarOpen); 
+  const toggleSidebar = (e: React.MouseEvent) => {
+    e.preventDefault();
+    setIsSidebarOpen((prev) => !prev);
   };
 
   return (
     <nav className={styles.nav}>
       <div className={styles.logos}>
           {isLoggedIn && (
-            <a href="#" onClick={toggleSidebar}>
+            <button onClick={toggleSidebar}>
               <Image src={sidebar} alt="Sidebar icon" />
-            </a>
+            </button>
           )}
           {isLoggedIn ?
             <Link href='/dashboard'>
@@ -46,7 +46,8 @@ export default function Nav({ isLoggedIn }: NavProps) {
         <p className={styles.text}>Log in</p>
       </Link>
     }
-    {isSidebarOpen && <Sidebar />}
+
+    <Sidebar isOpen={isSidebarOpen} onClose={() => setIsSidebarOpen(false)} />
     </nav>
   );
 }
