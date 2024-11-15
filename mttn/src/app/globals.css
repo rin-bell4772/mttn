@@ -50,6 +50,7 @@ body {
   background-size: cover;
   margin: 0 0;
   font-family: 'Gochi Hand', sans-serif; 
-  width: auto;
+  width: 100vw;
   max-width: 100%;
+  overflow-x: hidden;
 }
