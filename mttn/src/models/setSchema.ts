@@ -2,12 +2,12 @@ import mongoose, { Schema, Document, Model } from 'mongoose';
 import { ICard } from './cardSchema';
 import cardSchema from './cardSchema';
 
-interface IFolder extends Document {
+interface ISet extends Document {
     name: string;
     cards: ICard[];
 }
 
-const folderSchema: Schema = new Schema<IFolder>({
+const setSchema: Schema = new Schema<ISet>({
     name: { 
         type: String, 
         required: true 
@@ -18,6 +18,6 @@ const folderSchema: Schema = new Schema<IFolder>({
     },
 });
 
-const Folder: Model<IFolder> = mongoose.models.Folder || mongoose.model<IFolder>('Folder', folderSchema);
-export default Folder;
-export type { IFolder };
+const Set: Model<ISet> = mongoose.models.Folder || mongoose.model<ISet>('Folder', setSchema);
+export default Set;
+export type { ISet };

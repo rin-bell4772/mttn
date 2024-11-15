@@ -1,13 +1,13 @@
 import mongoose, { Schema, Document, Model } from 'mongoose';
-import { IFolder } from './folderSchema';
-import folderSchema from './folderSchema';
+import { ISet } from './setSchema';
+import setSchema from './setSchema';
 
 interface IUser extends Document {
     username: string;
     email: string;
     password: string;
     profilePicture: string;
-    folders: IFolder[];
+    folders: ISet[];
 }
 
 const userSchema: Schema = new Schema<IUser>({
@@ -28,7 +28,7 @@ const userSchema: Schema = new Schema<IUser>({
         default: "" 
     },
     folders: { 
-        type: [folderSchema], 
+        type: [setSchema], 
         ref: 'Folder' 
     }
 });

@@ -1,5 +1,5 @@
 import connectMongoDB from "@/libs/mongodb";
-import Folder from "@/models/folderSchema";
+import Set from "@/models/setSchema";
 import { NextResponse } from "next/server";
 import { NextRequest } from "next/server";
 
