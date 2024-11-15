@@ -9,24 +9,17 @@ interface SidebarProps {
 }
 
 export default function Sidebar({ isOpen, onClose }: SidebarProps) {
-    useEffect(() => {
-        const sidebar = document.getElementById("sidebar");
-        if (sidebar) {
-            sidebar.style.transition = "width 0.5s"; 
-        }
-    }, []);
-
     return (
         <div 
         id="sidebar" 
         className={styles.sidebar} 
         style={{ 
             width: isOpen ? "25%" : "0",
-            transition: "width 0.5s",
+            transition: "width 0.4s",
         }}>
             <div>
                 <h1>NAVIGATION</h1>
-                <a href="#" onClick={onClose} className={styles.closeButton}>&times;</a>
+                <a onClick={onClose} className={styles.closeButton}>&times;</a>
             </div>
             <Link href="./dashboard">Dashboard</Link>
             <Link href="./settings">Account Settings</Link>
