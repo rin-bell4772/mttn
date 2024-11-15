@@ -47,7 +47,7 @@ export default function Nav({ isLoggedIn }: NavProps) {
       </Link>
     }
 
-    <Sidebar isOpen={isSidebarOpen} onClose={() => setIsSidebarOpen(false)} />
+    <Sidebar isOpen={isSidebarOpen} onCloseAction={() => setIsSidebarOpen(false)} />
     </nav>
   );
 }

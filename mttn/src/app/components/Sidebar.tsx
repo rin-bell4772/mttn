@@ -5,10 +5,10 @@ import styles from './Sidebar.module.css';
 
 interface SidebarProps {
     isOpen: boolean;
-    onClose: () => void;
+    onCloseAction: () => void;
 }
 
-export default function Sidebar({ isOpen, onClose }: SidebarProps) {
+export default function Sidebar({ isOpen, onCloseAction }: SidebarProps) {
     return (
         <div 
         id="sidebar" 
@@ -19,7 +19,7 @@ export default function Sidebar({ isOpen, onClose }: SidebarProps) {
         }}>
             <div>
                 <h1>NAVIGATION</h1>
-                <a href="#" onClick={onClose} className={styles.closeButton}>&times;</a>
+                <a href="#" onClick={onCloseAction} className={styles.closeButton}>&times;</a>
             </div>
             <Link href="./dashboard">Dashboard</Link>
             <Link href="./settings">Account Settings</Link>
