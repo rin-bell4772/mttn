@@ -3,6 +3,7 @@ import React from 'react';
 import Image from 'next/image';
 import styles from './AddFlashcard.module.css';
 import add_icon from '../images/add_icon.png';
+import Button from './Button';
 
 export default function AddStudySet() {
     return (
@@ -27,8 +28,10 @@ export default function AddStudySet() {
                 type="url"
                 placeholder="Image URL"
             />
-
-            <Image src={add_icon} alt="Add Icon"/>
+            <Button className={styles.button}>
+                <Image src={add_icon} alt="Add Icon"/>
+            </Button>
+                
         </div>
     );
 }

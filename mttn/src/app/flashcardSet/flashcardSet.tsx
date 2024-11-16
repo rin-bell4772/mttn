@@ -8,6 +8,7 @@ import star from '../images/star.png';
 import speaker from '../images/speaker.png';
 import shuffleSet from '../images/shuffleSet.png';
 import Link from 'next/link';
+import Button from '../components/Button';
 
 export default function FlashcardSet() {
     return (
@@ -21,30 +22,48 @@ export default function FlashcardSet() {
             </div>
 
            <div className={styles.mainCard}>
-                <Image src={leftArrow} alt={"left arrow"} width={50}/>
+                <Button className={styles.button}>
+                    <Image src={leftArrow} alt={"left arrow"} width={50}/>
+                </Button>
+
                 <div className={styles.card}>
                     <div className={styles.upper}>
                         <p>1 of 10</p>
-                        <Image src={star} alt={"star"} width={20}/>
+                        <Button className={styles.button}>
+                            <Image src={star} alt={"star"} width={20}/>
+                        </Button>
+                        
                     </div>
                     <div className={styles.termDef}>
                         <p>Term</p>  
                     </div>
                     <div className={styles.turnArrow}>
-                        <Image src={flipArrow} alt={"flip"} width={20}/>
+                        <Button className={styles.button}>
+                            <Image src={flipArrow} alt={"flip"} width={20}/>
+                        </Button>
+                        
                     </div>
 
                 </div>
-                <Image src={rightArrow} alt={"right arrow"} width={50}/>
+                <Button className={styles.button}>
+                    <Image src={rightArrow} alt={"right arrow"} width={50}/>
+                </Button>
+                
                         
            </div>
 
            <div className={styles.shuffling}> 
-              <Image src={shuffleSet} alt={"shuffle"} width={150}/>
+                <Button className={styles.button}>
+                    <Image src={shuffleSet} alt={"shuffle"} width={150}/>
+                </Button>
+              
             </div>
 
             <div className={styles.bottom}>
-                <Image src={speaker} alt={"sound"} width={40}/>
+                <Button className={styles.button}>
+                    <Image src={speaker} alt={"sound"} width={40}/>
+                </Button>
+                
                 <p className={styles.time}>Time left: 00:00</p>
             </div>
          </div>
