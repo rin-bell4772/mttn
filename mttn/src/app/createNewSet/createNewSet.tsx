@@ -5,6 +5,7 @@ import Flashcard from './Flashcard';
 import Button from '../components/Button';
 import AddFlashcard from './AddFlashcard';
 import Link from 'next/link';
+import { useState } from 'react';
 
 type Flashcards = {
     id: number;
@@ -17,7 +18,7 @@ type cardData = {
     cards: Flashcards[];
 };
 
-export default function NewFlashcards({cards}: cardData) {
+export default function NewFlashcards({cards}: cardData) {    
     return (
        <div>
             <div className={styles.header}>
@@ -32,12 +33,16 @@ export default function NewFlashcards({cards}: cardData) {
                 
             </div>
             
-            <div className={styles.addCard}>
-                <Card>
-                    <AddFlashcard />
-                </Card>
-            </div>
+            
             
         </div>
     )
 }
+
+/*
+<div className={styles.addCard}>
+                <Card>
+                    <AddFlashcard onAddCard={}/>
+                </Card>
+            </div>
+            */

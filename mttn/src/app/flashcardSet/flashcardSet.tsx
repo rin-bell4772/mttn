@@ -12,7 +12,7 @@ import Button from '../components/Button';
 
 export default function FlashcardSet() {
     return (
-      
+        
         <div className={styles.flashcardPage}>
             <div className={styles.heading}>
                 <Link href="/dashboard">
@@ -26,6 +26,7 @@ export default function FlashcardSet() {
                     <Image src={leftArrow} alt={"left arrow"} width={50}/>
                 </Button>
 
+                
                 <div className={styles.card}>
                     <div className={styles.upper}>
                         <p>1 of 10</p>
@@ -45,6 +46,7 @@ export default function FlashcardSet() {
                     </div>
 
                 </div>
+
                 <Button className={styles.button}>
                     <Image src={rightArrow} alt={"right arrow"} width={50}/>
                 </Button>
@@ -67,6 +69,7 @@ export default function FlashcardSet() {
                 <p className={styles.time}>Time left: 00:00</p>
             </div>
          </div>
+         
          
         
     )

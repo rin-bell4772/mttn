@@ -64,12 +64,18 @@
     color: #364d2a; 
     transition: background-color 0.3s;
     position: relative;
+
 }
 
 .button:hover {
     background-color: #4caf4f00; 
   }
   
+
+.flashcard {
+    width: 100%;
+    height: 100%;
+}
 /*
 .card {
     width: 60%;

@@ -10,8 +10,8 @@
     border-color: #374D2B;
     border-width: 3px;
     margin: 1%;
-    
-    width: auto;
+
+       
 }
 
 .addFlashcard img {
@@ -23,7 +23,7 @@
 
 .information {
     border-radius: 20px;
-    padding: 2px;
+    padding: 1%;
     margin: 2%;
     width: 100%;
     
@@ -37,11 +37,13 @@
     border-radius: 30px;
     box-shadow: 0px 0px 0px; 
     color: #364d2a; 
-    transition: background-color 0.3s;
     position: relative;
+    padding-bottom: 3%;
 }
 
-.button:hover {
-    background-color: #4caf4f00; 
+.button:hover {   
+    transition: background-color 0.3s;
+    background-color: #4caf4f42; 
+    
   }
   
