@@ -6,6 +6,7 @@ import Footer from "../components/Footer";
 import Flashcard from './Flashcard';
 import Card from '../components/Card';
 import Image from 'next/image';
+import AddFlashcard from './AddFlashcard';
 
 
 type Flashcard = {
@@ -48,6 +49,7 @@ export default function CreateNewSet(): JSX.Element {
         <>
             <Nav isLoggedIn={true} />
             <NewFlashcards cards={cards}/>
+            <AddFlashcard onAddCard={addCardHandler}/>
             <Footer />
         </>
     );
