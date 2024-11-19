@@ -3,7 +3,7 @@ import React from 'react';
 import Image from 'next/image';
 import styles from './AddFlashcard.module.css';
 import add_icon from '../images/add_icon.png';
-import Button from './Button';
+import Button from '../components/Button';
 
 export default function AddStudySet() {
     return (

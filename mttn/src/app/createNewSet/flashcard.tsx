@@ -19,15 +19,13 @@ export default function Flashcard({flashcard}: FlashcardProps) {
             <div className={styles.cardCSS}>
                 <p>{flashcard.term}</p>
                 <p>{flashcard.definition}</p>
-
-                    <Image 
-                        src={flashcard.image}
-                        alt={flashcard.term}
-                        width={100} height={100}
-                        priority
-                    />
-
-                
+                <Image 
+                    src={flashcard.image}
+                    alt={flashcard.term}
+                    width={100} height={100}
+                    priority
+                />
+        
             </div>
         </Card>
 

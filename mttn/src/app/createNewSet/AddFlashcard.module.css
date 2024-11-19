@@ -10,7 +10,8 @@
     border-color: #374D2B;
     border-width: 3px;
     margin: 1%;
-        
+    
+    width: auto;
 }
 
 .addFlashcard img {
@@ -22,8 +23,10 @@
 
 .information {
     border-radius: 20px;
+    padding: 2px;
     margin: 2%;
-    width: 98%;
+    width: 100%;
+    
 }
 
 .button{

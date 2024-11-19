@@ -3,7 +3,7 @@ import styles from './CreateNewSet.module.css';
 import Card from '../components/Card';
 import Flashcard from './Flashcard';
 import Button from '../components/Button';
-import AddFlashcard from '../components/AddFlashcard';
+import AddFlashcard from './AddFlashcard';
 import Link from 'next/link';
 
 type Flashcards = {
