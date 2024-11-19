@@ -54,3 +54,7 @@ body {
   max-width: 100%;
   overflow-x: hidden;
 }
+
+Link {
+  border: 3px;
+}

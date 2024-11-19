@@ -29,6 +29,11 @@ export default function AddStudySet({onAddCard}: AddCardProps) {
     const submitHandler = (event: FormEvent) => {
         event.preventDefault();
 
+        if (!term || !definition) {
+            alert("Both term and definition are required to add a flashcard!");
+            return;
+        }
+
         const newCard: Cards = {
             id: Math.random(),
             term,
@@ -47,36 +52,36 @@ export default function AddStudySet({onAddCard}: AddCardProps) {
         
         <div className={styles.addFlashcard}> 
            <Card>
-            <form onSubmit={submitHandler}>
-                <input className={styles.information}
-                    id="term"
-                    type="text"
-                    placeholder="Term"
-                    value={term}
-                    onChange={(event) => setTerm(event.target.value)}
-                />
-                <input className={styles.information} 
-                    id="definition"
-                    type="text"
-                    placeholder="Definition"
-                    //value
-                    //onChange
-                    value={definition}
-                    onChange={(event) => setDefinition(event.target.value)}
-                />
-                <input className={styles.information}
-                    id="imageLink"
-                    type="url"
-                    placeholder="Image URL"
-                    value={image}
-                    onChange={(event) => setImageUrl(event.target.value)}
+                <form onSubmit={submitHandler}>
+                    <input className={styles.information}
+                        id="term"
+                        type="text"
+                        placeholder="Term"
+                        value={term}
+                        onChange={(event) => setTerm(event.target.value)}
+                    />
+                    <input className={styles.information} 
+                        id="definition"
+                        type="text"
+                        placeholder="Definition"
+                        //value
+                        //onChange
+                        value={definition}
+                        onChange={(event) => setDefinition(event.target.value)}
+                    />
+                    <input className={styles.information}
+                        id="imageLink"
+                        type="url"
+                        placeholder="Image URL"
+                        value={image}
+                        onChange={(event) => setImageUrl(event.target.value)}
 
-                />
-                <Button type="submit" className={styles.button}>
-                    <Image src={add_icon} alt="Add Icon"/>
-                </Button>
-            </form>  
-            
+                    />
+                    <Button type="submit" className={styles.button}>
+                        <Image src={add_icon} alt="Add Icon"/>
+                    </Button>
+                </form>  
+                
             </Card>
         </div>
         
