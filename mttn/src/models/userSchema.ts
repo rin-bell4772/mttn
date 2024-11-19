@@ -7,7 +7,7 @@ interface IUser extends Document {
     email: string;
     password: string;
     profilePicture: string;
-    folders: ISet[];
+    //sets: ISet[];
 }
 
 const userSchema: Schema = new Schema<IUser>({
@@ -27,10 +27,10 @@ const userSchema: Schema = new Schema<IUser>({
         type: String, 
         default: "" 
     },
-    folders: { 
-        type: [setSchema], 
-        ref: 'Folder' 
-    }
+    // sets: { 
+    //     type: [setSchema], 
+    //     ref: 'Set' 
+    // }
 });
 
 const User: Model<IUser> = mongoose.models.User || mongoose.model<IUser>('User', userSchema);

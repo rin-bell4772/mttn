@@ -4,7 +4,7 @@ import cardSchema from './cardSchema';
 
 interface ISet extends Document {
     name: string;
-    cards: ICard[];
+    // cards: ICard[];
 }
 
 const setSchema: Schema = new Schema<ISet>({
@@ -12,12 +12,11 @@ const setSchema: Schema = new Schema<ISet>({
         type: String, 
         required: true 
     },
-    cards: { 
-        type: [cardSchema], 
-        required: true 
-    },
+    // cards: { 
+    //     type: [cardSchema], 
+    // },
 });
 
-const Set: Model<ISet> = mongoose.models.Folder || mongoose.model<ISet>('Folder', setSchema);
+const Set: Model<ISet> = mongoose.models.Folder || mongoose.model<ISet>('Set', setSchema);
 export default Set;
 export type { ISet };

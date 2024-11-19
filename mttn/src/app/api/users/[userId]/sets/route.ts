@@ -8,7 +8,10 @@ export async function GET(request: NextRequest) {
 }
 
 export async function POST(request: NextRequest) {
-    // Handle POST requests
+    const { name } = await request.json();
+    await connectMongoDB();
+    await Set.create({ name });
+    return NextResponse.json({ message: "Item added successfully" }, { status: 201 });
 }
 
 export async function PUT(request: NextRequest) {

@@ -8,11 +8,9 @@ interface ICard extends Document {
 const cardSchema: Schema = new Schema<ICard>({
     term: { 
         type: String, 
-        required: true 
     },
     definition: { 
         type: String, 
-        required: true 
     },
 });
 
