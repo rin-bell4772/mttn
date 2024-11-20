@@ -10,11 +10,14 @@
 
 .scroll {
     display: flex;
-    overflow-x: auto; 
-    overflow-y: hidden; 
+    overflow-x: auto;
     gap: 7.5%;
     max-width: 100%;
+    padding: 10px; 
+}
 
+.scroll::-webkit-scrollbar {
+    display: none; 
 }
 
 .grid {
