@@ -13,6 +13,8 @@ const recent = [
 
 const favorites = [];
 
+const all = [];
+
 export default function Dashboard() {
     return (
         <div className={styles.dashboard}>
