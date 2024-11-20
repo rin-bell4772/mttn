@@ -9,11 +9,9 @@
     border-radius: 20px;
     border-color: #374D2B;
     border-width: 3px;
-    margin: 1%;
-
+    margin: 1%;  
     width: 100%;
-    max-width: 500px;
-    
+    max-width: 500px;   
 }
 
 .addFlashcard img {
