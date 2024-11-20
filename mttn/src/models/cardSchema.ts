@@ -15,5 +15,5 @@ const cardSchema: Schema = new Schema<ICard>({
 });
 
 const Card: Model<ICard> = mongoose.models.Card || mongoose.model<ICard>('Card', cardSchema);
-export default { Card };
+export default Card;
 export type { ICard };

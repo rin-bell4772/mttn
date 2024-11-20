@@ -24,13 +24,3 @@ export async function POST(request: NextRequest) {
     await User.create({ username, email, password, profilePicture, sets });
     return NextResponse.json({ message: "Item added successfully" }, { status: 201 });
 }
-
-// update a user
-export async function PUT(request: NextRequest) {
-    // Handle PUT requests
-}
-
-// delete a user
-export async function DELETE(request: NextRequest) {
-    // Handle DELETE requests
-}

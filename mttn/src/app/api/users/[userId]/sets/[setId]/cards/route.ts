@@ -4,17 +4,16 @@ import { NextResponse } from "next/server";
 import { NextRequest } from "next/server";
 
 export async function GET(request: NextRequest) {
-    // Handle GET requessts
+    await connectMongoDB();
+    const cards = await Card.find();
+    return NextResponse.json({ cards });
 }
 
 export async function POST(request: NextRequest) {
-    // Handle POST requests
+    const { term, definition } = await request.json();
+    await connectMongoDB();
+    await Card.create({ term, definition });
+    return NextResponse.json({ message: "Item added successfully" }, { status: 201 });
 }
 
-export async function PUT(request: NextRequest) {
-    // Handle PUT requests
-}
 
-export async function DELETE(request: NextRequest) {
-    // Handle DELETE requests
-}
