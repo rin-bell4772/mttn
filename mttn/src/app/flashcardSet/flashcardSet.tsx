@@ -62,6 +62,9 @@ export default function FlashcardSet() {
             </div>
             
             <div className={styles.bottom}>
+
+                <p className={styles.time}>Time left: 00:00</p>
+
                 <div className={styles.dropdown}>
                     <Button className={styles.dropdownButton}>
                         <Image src={speaker} alt={"sound"} width={40}/>
@@ -75,7 +78,7 @@ export default function FlashcardSet() {
                 </div>
 
 
-                <p className={styles.time}>Time left: 00:00</p>
+                
                 
                 
                 
