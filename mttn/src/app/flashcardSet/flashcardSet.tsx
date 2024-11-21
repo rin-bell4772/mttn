@@ -60,13 +60,26 @@ export default function FlashcardSet() {
                 </Button>
               
             </div>
-
+            
             <div className={styles.bottom}>
-                <Button className={styles.button}>
-                    <Image src={speaker} alt={"sound"} width={40}/>
-                </Button>
-                
+                <div className={styles.dropdown}>
+                    <Button className={styles.dropdownButton}>
+                        <Image src={speaker} alt={"sound"} width={40}/>
+                    </Button>
+                    <div className={styles.dropdownContent}>
+                        <button className={styles.buttonDrop}><p>Jazz</p></button>
+                        <button className={styles.buttonDrop}><p>Cafe</p></button>
+                        <button className={styles.buttonDrop}><p>Rainforest</p></button>
+
+                    </div>
+                </div>
+
+
                 <p className={styles.time}>Time left: 00:00</p>
+                
+                
+                
+                
             </div>
          </div>
          
