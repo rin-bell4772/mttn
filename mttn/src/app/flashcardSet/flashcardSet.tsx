@@ -9,6 +9,7 @@ import speaker from '../images/speaker.png';
 import shuffleSet from '../images/shuffleSet.png';
 import Link from 'next/link';
 import Button from '../components/Button';
+import Timer from '../components/Timer';
 
 export default function FlashcardSet() {
     return (
@@ -65,8 +66,7 @@ export default function FlashcardSet() {
                 <Button className={styles.button}>
                     <Image src={speaker} alt={"sound"} width={40}/>
                 </Button>
-                
-                <p className={styles.time}>Time left: 00:00</p>
+                <p className={styles.time}><Timer/></p>
             </div>
          </div>
          
