@@ -3,6 +3,8 @@ import Set from "@/models/setSchema";
 import { NextResponse } from "next/server";
 import { NextRequest } from "next/server";
 
+
+// tested
 // get all sets
 export async function GET(request: NextRequest) {
     await connectMongoDB();
@@ -10,6 +12,7 @@ export async function GET(request: NextRequest) {
     return NextResponse.json({ sets });
 }
 
+// tested
 // create a set
 export async function POST(request: NextRequest) {
     const { name } = await request.json();
