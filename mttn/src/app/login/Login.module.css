@@ -40,6 +40,8 @@
 .form {
   display: flex;
   flex-direction: column;
+  padding: 0 16px;
+  box-sizing: border-box;
 }
 
 .label {
@@ -56,6 +58,7 @@
   color: #333;
   border-radius: 35px;
   margin-bottom: 10px;
+  box-sizing: border-box;
 }
 
 .loginButton {
@@ -68,6 +71,7 @@
   border-radius: 35px;
   cursor: pointer;
   font-family: 'Gochi Hand', sans-serif;
+  box-sizing: border-box;
 }
 
 .loginButton:hover {

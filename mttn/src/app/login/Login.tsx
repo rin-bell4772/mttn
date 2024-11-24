@@ -26,7 +26,7 @@ export const Login = () => {
     formData.append('password', password);
 
     try {
-       const response = await doCredentialLogin(formData);
+    //   const response = await doCredentialLogin(formData);
     //   if (response) {
     //     console.log('Login Successful:', { email, password });
     //     router.push('/dashboard');
