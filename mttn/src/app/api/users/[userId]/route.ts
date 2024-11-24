@@ -4,39 +4,36 @@ import { NextResponse } from "next/server";
 import { NextRequest } from "next/server";
 
 interface RouteParams {
-    params: { userId: string };
+    params: { id: string };
 }
 
-//tested
 // get a single user
 export async function GET(request: NextRequest, { params }: RouteParams) {
-    const { userId } = await params;
+    const { id } = await params;
     await connectMongoDB();
-    const user = await User.findOne({ _id: userId });
+    const user = await User.findOne({ _id: id });
     return NextResponse.json({ user }, { status: 200 });
 }
 
-// tested
 // update a user
 export async function PUT(request: NextRequest, { params }: RouteParams) {
-    const { userId } = await params;
+    const { id } = await params;
     const { username, email, password, profilePicture} = await request.json();
     await connectMongoDB();
-    await User.findByIdAndUpdate(userId, { username, email, password, profilePicture });
+    await User.findByIdAndUpdate(id, { username, email, password, profilePicture });
     return NextResponse.json({ message: "Item updated" }, { status: 200 });
 }
 
-// tested
 // delete a user
 export async function DELETE(request: NextRequest, { params }: RouteParams) {
-    const { userId } = await params;
+    const { id } = await params;
 
-    if (!userId) {
+    if (!id) {
         return NextResponse.json({ message: "ID is requried" }, { status: 400 });
     }
 
     await connectMongoDB();
-    const deletedItem = await User.findByIdAndDelete(userId);
+    const deletedItem = await User.findByIdAndDelete(id);
 
     if (!deletedItem) {
         return NextResponse.json({ message: "Item not found" }, { status: 404 });

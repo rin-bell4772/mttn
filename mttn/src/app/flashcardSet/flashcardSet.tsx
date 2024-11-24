@@ -61,13 +61,12 @@ export default function FlashcardSet() {
                 </Button>
               
             </div>
-            
+
             <div className={styles.bottom}>
                 <Button className={styles.button}>
                     <Image src={speaker} alt={"sound"} width={40}/>
                 </Button>
-                
-                <p className={styles.time}>Time left: 00:00</p>
+                <p className={styles.time}><Timer/></p>
             </div>
          </div>
          

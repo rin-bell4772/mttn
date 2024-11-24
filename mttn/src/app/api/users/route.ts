@@ -5,7 +5,7 @@ import { NextRequest } from "next/server";
 
 const bcrypt = require('bcrypt');
 
-// tested
+// needs to be tested
 // get all users
 export async function GET(request: NextRequest) {
     // Handle GET requessts
@@ -15,7 +15,7 @@ export async function GET(request: NextRequest) {
 }
 
 
-// tested
+// needs to be tested
 // password needs to be hashed
 // create a user
 export async function POST(request: NextRequest) {

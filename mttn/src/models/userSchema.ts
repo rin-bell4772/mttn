@@ -13,13 +13,11 @@ interface IUser extends Document {
 const userSchema: Schema = new Schema<IUser>({
     username: { 
         type: String, 
-        required: true ,
-        unique: true
+        required: true 
     },
     email: { 
         type: String, 
-        required: true,
-        unique: true
+        required: true 
     },
     password: { 
         type: String, 
