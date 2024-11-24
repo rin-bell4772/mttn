@@ -26,7 +26,7 @@ export const CreateAccount = () => {
     setFormValues((prevValues) => ({ ...prevValues, [id]: value }));
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit =  async (e: React.FormEvent) => {
     e.preventDefault();
     const { username, email, password, confirmPassword } = formValues;
 
@@ -38,6 +38,25 @@ export const CreateAccount = () => {
     if (password !== confirmPassword) {
       setError('Passwords do not match.');
       return;
+    }
+
+    try {
+      const response = await fetch('/api/users', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ username, email, password, profilePicture: '' }),
+      });
+
+      if (response.ok) {
+        console.log("Account created");
+        router.push('/login');
+      } else {
+        const data = await response.json();
+        setError(data.message);
+      }
+    } catch (err) {
+      console.error('Create account error:', err);
+      setError('An error occurred while creating your account');
     }
 
     console.log('Form Submitted:', formValues);

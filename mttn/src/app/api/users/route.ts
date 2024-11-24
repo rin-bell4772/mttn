@@ -3,7 +3,7 @@ import User from "@/models/userSchema";
 import { NextResponse } from "next/server";
 import { NextRequest } from "next/server";
 
-const bcrypt = require('bcrypt');
+const bcrypt = require('bcryptjs');
 
 // tested
 // get all users

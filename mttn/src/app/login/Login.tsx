@@ -4,26 +4,42 @@ import React, { useState } from 'react';
 import styles from './Login.module.css';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
+import { doCredentialLogin } from "./loginAuthentication";
+import mongoose from 'mongoose';
+
+type formData = {
+  username: string;
+  password: string;
+}
 
 export const Login = () => {
-  const [emailOrUsername, setEmailOrUsername] = useState('');
+  const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
   const router = useRouter();
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
-    if ((emailOrUsername === 'user@mttn.com' || emailOrUsername === 'mttn123') && password === '12345') {
-      console.log('Login Successful:', { emailOrUsername, password });
-      router.push('/dashboard');
-    } else {
-      setErrorMessage('Invalid email/username or password');
+    const formData = new FormData();
+    formData.append('email', email);
+    formData.append('password', password);
+
+    try {
+       const response = await doCredentialLogin(formData);
+    //   if (response) {
+    //     console.log('Login Successful:', { email, password });
+    //     router.push('/dashboard');
+    //   } else {
+    //     setErrorMessage('Invalid email or password');
+    //   }
+    } catch (err) {
+    //   setErrorMessage('An error occurred during login');
     }
 
-    // Clear input fields after logging in or on failed attempt
-    setEmailOrUsername('');
-    setPassword('');
+    // // Clear input fields after logging in or on failed attempt
+    // setEmail('');
+    // setPassword('');
   };
 
   return (
@@ -34,18 +50,17 @@ export const Login = () => {
         {errorMessage && <p className={styles.errorMessage}>{errorMessage}</p>}
 
         <form className={styles.form} onSubmit={handleSubmit}>
-          <label htmlFor="emailOrUsername" className={styles.label}>
+          <label htmlFor="email" className={styles.label}>
             Email or Username
           </label>
           <input
             type="text"
-            id="emailOrUsername"
-            placeholder="Enter your email or username"
+            id="email"
+            placeholder="Enter your email"
             className={styles.inputField}
-            value={emailOrUsername}
-            onChange={(e) => setEmailOrUsername(e.target.value)}
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
           />
-
           <label htmlFor="password" className={styles.label}>
             Password
           </label>
@@ -57,18 +72,15 @@ export const Login = () => {
             value={password}
             onChange={(e) => setPassword(e.target.value)}
           />
-
           <button type="submit" className={styles.loginButton}>
             Log in
           </button>
         </form>
-
         <div className={styles.textWrapper}>
           <Link href="/changePassword" className={styles.forgotPassword}>
             Forgot password?
           </Link>
         </div>
-
         <div className={styles.textWrapper}>
           <Link href="/createAccount" className={styles.forgotPassword}>
             Don't have an account?
