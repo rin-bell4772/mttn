@@ -3,7 +3,7 @@ import NextAuth from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
 import User from "@/models/userSchema";
 
-const bcrypt = require('bcrypt');
+const bcrypt = require('bcryptjs');
 
 export const {
     handlers: { GET, POST },
