@@ -23,7 +23,7 @@ export async function PUT(request: NextRequest, { params }: RouteParams) {
     const { cardId } = await params;
     const { term, definition } = await request.json();
     await connectMongoDB();
-    await Card.findByIdAndUpdate( cardId, { term, definition });
+    await Card.findByIdAndUpdate( cardId, { term, definition, image });
     return NextResponse.json({ message: "Item updated" }, { status: 200 });
 }
 
