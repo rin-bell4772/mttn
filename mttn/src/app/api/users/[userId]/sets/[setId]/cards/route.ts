@@ -16,7 +16,7 @@ export async function GET(request: NextRequest) {
 export async function POST(request: NextRequest) {
     const { term, definition } = await request.json();
     await connectMongoDB();
-    await Card.create({ term, definition });
+    await Card.create({ term, definition, image });
     return NextResponse.json({ message: "Item added successfully" }, { status: 201 });
 }
 
