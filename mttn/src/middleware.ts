@@ -18,11 +18,11 @@ export default async function middleware(request: any) {
 // middleware automatically applied
 export const config = {
     matcher: [
-        "/dashboard",
-        "/flashcardSet",
-        "/settings",
-        "/changeSettings",
-        "/changePassword",
-        "/createNewSet",
+        // "/dashboard",
+        // "/flashcardSet",
+        // "/settings",
+        // "/changeSettings",
+        // "/changePassword",
+        // "/createNewSet",
     ]
 }

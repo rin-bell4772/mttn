@@ -4,7 +4,7 @@ import React, { useState } from 'react';
 import styles from './Login.module.css';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
-import { doCredentialLogin } from "./loginAuthentication";
+import { doCredentialLogin } from '@/app/api/users/login/loginAuthentication';
 import mongoose from 'mongoose';
 
 type formData = {
@@ -26,7 +26,7 @@ export const Login = () => {
     formData.append('password', password);
 
     try {
-    //   const response = await doCredentialLogin(formData);
+       const response = await doCredentialLogin(formData);
     //   if (response) {
     //     console.log('Login Successful:', { email, password });
     //     router.push('/dashboard');
