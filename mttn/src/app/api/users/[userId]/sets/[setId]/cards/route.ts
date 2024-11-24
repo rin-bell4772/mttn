@@ -3,12 +3,16 @@ import Card from "@/models/cardSchema";
 import { NextResponse } from "next/server";
 import { NextRequest } from "next/server";
 
+// tested
+// get all cards
 export async function GET(request: NextRequest) {
     await connectMongoDB();
     const cards = await Card.find();
     return NextResponse.json({ cards });
 }
 
+// tested
+// create a card
 export async function POST(request: NextRequest) {
     const { term, definition } = await request.json();
     await connectMongoDB();
