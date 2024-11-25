@@ -44,6 +44,16 @@ export default function FlashcardSet() {
         }
     };
 
+    const playAndPause = () => {
+        if (currentAudio) {
+            if (currentAudio.paused) {
+                currentAudio.play();
+            } else {
+               currentAudio.pause();
+            }
+        }
+    }
+
     const startJazz = () => {
         playAudio(jazz);
     };
@@ -101,7 +111,7 @@ export default function FlashcardSet() {
            <div className={styles.bottom}>
                 <div className={styles.time}> <Timer/> </div>
                 <div className={styles.dropdown}>
-                    <Button className={styles.dropdownButton}>
+                    <Button className={styles.dropdownButton} onClick={playAndPause}>
                         <Image src={speaker} alt={"sound"} width={40}/>
                     </Button>
                     <div className={styles.dropdownContent}>
