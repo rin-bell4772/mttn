@@ -14,7 +14,46 @@ import Link from 'next/link';
 import Button from '../components/Button';
 import Timer from '../components/Timer';
 
+
+
+type Flashcards = {
+    id: number;
+    term: string;
+    definition: string;
+    image: string;
+};
+
+const dummyArr: Flashcards[] = [
+    {
+        id: 1,
+        term: 'Red Panda',
+        definition: 'Mammal that is cute!', 
+        image: 'https://classroomclipart.com/images/gallery/Clipart/Animals/cute-small-baby-red-panda-animal-clipart.jpg',
+    },
+    {
+        id: 2,
+        term: 'Starfish',
+        definition: 'In the ocean omg',
+        image: 'https://www.shutterstock.com/image-vector/vector-starfish-icon-under-sea-600nw-2279259637.jpg',
+    },
+    {
+        id: 3,
+        term: 'Lion',
+        definition: 'Lion king is a rlly good movie',
+        image: 'https://classroomclipart.com/image/static2/preview2/cute-animal-lion-clipart-33697.jpg',
+    },
+    {
+        id: 4,
+        term: 'Panda',
+        definition: 'black and white',
+        image: ''
+    },
+];
+
 export default function FlashcardSet() {
+    
+    
+    
     // need useState for Client-side rendering of audio
     const [jazz, setJazz] = useState<HTMLAudioElement | null>(null);
     const [cafe, setCafe] = useState<HTMLAudioElement | null>(null);
@@ -72,7 +111,7 @@ export default function FlashcardSet() {
                 <Link href="/dashboard">
                     <Image src={backArrow} alt={"arrow"}/>
                 </Link>
-                <h1>TITLE</h1>
+                <h1>Animals</h1>
             </div>
 
            <div className={styles.mainCard}>
