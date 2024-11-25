@@ -1,0 +1,9 @@
+.addSet {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.card {
+    width: 100%;
+}

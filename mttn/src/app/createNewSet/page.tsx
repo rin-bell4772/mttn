@@ -1,12 +1,13 @@
 "use client";
 import { useState } from 'react';
-import NewFlashcards from "./CreateNewSet";
+import NewFlashcards from "./createNewSet";
 import Nav from "../components/Nav";
 import Footer from "../components/Footer";
-import Flashcard from './Flashcard';
+import Flashcard from './flashcard';
 import Card from '../components/Card';
 import Image from 'next/image';
 import AddFlashcard from './AddFlashcard';
+import styles from './page.module.css'
 
 
 type Flashcard = {
@@ -50,11 +51,13 @@ export default function CreateNewSet(): JSX.Element {
 
     
     return (
-        <>
+        <div className={styles.addSet}>
             <Nav isLoggedIn={true} />
-            <NewFlashcards cards={cards}/>
+            <div className={styles.card}>
+                <NewFlashcards cards={cards}/>
+            </div>
             <AddFlashcard onAddCard={addCardHandler}/>
             <Footer />
-        </>
+        </div>
     );
 }
