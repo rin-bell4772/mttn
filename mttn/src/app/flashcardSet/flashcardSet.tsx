@@ -44,7 +44,7 @@ const dummyArr: Flashcards[] = [
     id: 4,
     term: "Panda",
     definition: "Black and white",
-    image: "",
+    image: "https://denettefretz.com/wp-content/uploads/2018/07/Andy2.png",
   },
 ];
 
@@ -153,7 +153,11 @@ export default function FlashcardSet() {
           </div>
           <div className={styles.termDef}>
             {isFlipped ? (
-              <p>{currentCard.definition}</p>
+                <div>
+                    <p>{currentCard.definition}</p>
+                    <Image src={currentCard.image} alt="image" width={50} height={50}/>
+                </div>
+   
             ) : (
               <p>{currentCard.term}</p>
             )}
