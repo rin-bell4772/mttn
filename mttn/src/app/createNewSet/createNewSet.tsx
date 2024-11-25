@@ -1,5 +1,4 @@
 "use client";
-
 import styles from './CreateNewSet.module.css';
 import Card from '../components/Card';
 import Flashcard from './Flashcard';
@@ -7,6 +6,7 @@ import Button from '../components/Button';
 import AddFlashcard from './AddFlashcard';
 import Link from 'next/link';
 import { useState } from 'react';
+import { useStudySet } from '../context/StudySetContext';
 
 type Flashcards = {
     id: number;
@@ -19,15 +19,22 @@ type cardData = {
     cards: Flashcards[];
 };
 
-export default function NewFlashcards({cards}: cardData) {    
+export default function NewFlashcards({ cards }: cardData) {
     const [title, setTitle] = useState("ANIMALS");
+    const { setTitles, updateSetTitles } = useStudySet();
 
     const handleTitleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         setTitle(e.target.value);
     };
 
+    const handleSave = () => {
+        if (title && !setTitles.includes(title)) {
+            updateSetTitles([...setTitles, title]);
+        }
+    };
+
     return (
-       <div>
+        <div>
             <div className={styles.header}>
                 <input
                     type="text"
@@ -36,20 +43,20 @@ export default function NewFlashcards({cards}: cardData) {
                     className={styles.titleInput}
                     placeholder="Enter a title"
                 />
-                <Link href="./flashcardSet">Save</Link>
+                <Link href="./flashcardSet">
+                    <Button type="button" onClick={handleSave}>
+                        Save
+                    </Button>
+                </Link>
             </div>
 
             <div>
                 {cards.map((card) => (
-                    <Flashcard key={card.id} flashcard={card}/>
+                    <Flashcard key={card.id} flashcard={card} />
                 ))}
-                
             </div>
-            
-            
-            
         </div>
-    )
+    );
 }
 
 /*
