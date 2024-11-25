@@ -1,4 +1,5 @@
-"use client"
+"use client";
+
 import styles from './CreateNewSet.module.css';
 import Card from '../components/Card';
 import Flashcard from './Flashcard';

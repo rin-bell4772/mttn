@@ -18,7 +18,7 @@
     padding: 0.5%;
     padding-left: 2%;
     margin-left: 8.5%;
-    background-color: #FFF5EC;
+    background-color: #ffe8c8a9;
     font-family: inherit;
     color: #374d2b;
     font-size: 1.5rem;
@@ -32,4 +32,5 @@
 .titleInput:focus {
     outline: none;
     border-color: #82a46e;
+    background-color: #FFF5EC;
 }
