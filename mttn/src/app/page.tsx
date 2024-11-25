@@ -34,7 +34,6 @@ export default function Home() {
           <h2>FEATURES</h2>
           <div className={styles.featureCards}>
             <div className={styles.card}>Flashcards</div>
-            <div className={styles.card}>Merging Sets</div>
             <div className={styles.card}>Interval Studying</div>
             <div className={styles.card}>Background Audio</div>
       
