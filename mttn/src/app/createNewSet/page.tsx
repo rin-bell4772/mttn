@@ -1,6 +1,6 @@
 "use client";
 import { useState } from 'react';
-import NewFlashcards from "./CreateNewSet";
+import NewFlashcards from "./createNewSet";
 import Nav from "../components/Nav";
 import Footer from "../components/Footer";
 import Flashcard from './Flashcard';
