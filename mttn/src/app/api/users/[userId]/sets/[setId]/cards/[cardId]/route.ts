@@ -21,7 +21,7 @@ export async function GET(request: NextRequest, { params }: RouteParams) {
 export async function PUT(request: NextRequest, { params }: RouteParams) {
     // Handle PUT requests
     const { cardId } = await params;
-    const { term, definition } = await request.json();
+    const { term, definition, image } = await request.json();
     await connectMongoDB();
     await Card.findByIdAndUpdate( cardId, { term, definition, image });
     return NextResponse.json({ message: "Item updated" }, { status: 200 });
