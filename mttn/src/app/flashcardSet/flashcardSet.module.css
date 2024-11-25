@@ -33,8 +33,25 @@
     
     display: grid;
     grid-template-rows: 1fr 1fr 1fr;
+    transition: transform 0.6s;
+    transition: background-color 0.3s ease; 
 }
-
+  
+  .card.flipped {
+    background-color: #FFE8C8; 
+  }
+  
+  .termDef {
+    font-size: 20px;
+    font-weight: bold;
+    text-align: center;
+  }
+  
+  .termDef p {
+    margin: 0;
+  }
+  
+  
 .upper {
     display: flex;
     justify-content: space-between;
@@ -154,3 +171,4 @@
 .dropdown:hover .dropdownButton {
     background-color: #3e8e41;
 }
+

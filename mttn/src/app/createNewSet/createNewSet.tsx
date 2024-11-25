@@ -58,4 +58,4 @@ export default function NewFlashcards({cards}: cardData) {
                     <AddFlashcard onAddCard={}/>
                 </Card>
             </div>
-            */
+*/
