@@ -89,7 +89,8 @@
     display: flex;
     justify-content: center;
     width: 15%;
-    padding: 1%
+    padding: 2%;
+    margin-bottom: 2%;
 }
 
 .bottom {

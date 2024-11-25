@@ -31,9 +31,7 @@ export default function FlashcardSet() {
                 <div className={styles.card}>
                     <div className={styles.upper}>
                         <p>1 of 10</p>
-                        <Button className={styles.button}>
-                            <Image src={star} alt={"star"} width={20}/>
-                        </Button>
+                        
                         
                     </div>
                     <div className={styles.termDef}>
@@ -64,8 +62,8 @@ export default function FlashcardSet() {
             
             <div className={styles.bottom}>
 
-            <p className={styles.time}> <Timer/> </p>
-
+            <div className={styles.time}> <Timer/> </div>
+            
                 <div className={styles.dropdown}>
                     <Button className={styles.dropdownButton}>
                         <Image src={speaker} alt={"sound"} width={40}/>
