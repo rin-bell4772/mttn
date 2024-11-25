@@ -17,7 +17,8 @@ type Cards = {
 }
 
 type AddCardProps = {
-    onAddCard: (cardArray: Cards[]) => void;
+    //onAddCard: (cardArray: Cards[]) => void;
+    onAddCard: (cardArray: Cards) => void;
 };
 
 export default function AddStudySet({onAddCard}: AddCardProps) {
@@ -35,12 +36,12 @@ export default function AddStudySet({onAddCard}: AddCardProps) {
         }
 
         // replace with POST request
-        /*const newCard: Cards = {
+        const newCard: Cards = {
             id: Math.random(),
             term,
             definition,
             image,
-        };*/
+        };
 
         async function createNewFlashcard(data: {term: string, definition: string, image: string}) {
             // "dummy"user id/set/"dummy"set id
@@ -66,7 +67,7 @@ export default function AddStudySet({onAddCard}: AddCardProps) {
         const data = getNewFlashcard();
         const s1 = JSON.parse(data);
 */
-        
+        /*
         const [items, setItems] = useState([]);
 
         useEffect(() => {
@@ -88,6 +89,8 @@ export default function AddStudySet({onAddCard}: AddCardProps) {
         }, []);
 
         //onAddCard(items);
+        */
+        onAddCard(newCard);
 
         setTerm('');
         setDefinition('');
