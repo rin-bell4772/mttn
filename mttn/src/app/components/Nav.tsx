@@ -5,6 +5,8 @@ import sidebar from '../images/sidebar.png';
 import Sidebar from './Sidebar';
 import Link from 'next/link';
 import Image from 'next/image';
+import { doLogout } from '@/app/actions';
+import Button from './Button';
 
 type NavProps = {
   isLoggedIn: boolean;
@@ -17,6 +19,10 @@ export default function Nav({ isLoggedIn }: NavProps) {
     e.preventDefault();
     setIsSidebarOpen((prev) => !prev);
   };
+
+  const logout = async () => {
+    await doLogout();
+  }
 
   return (
     <nav className={styles.nav}>
@@ -38,9 +44,10 @@ export default function Nav({ isLoggedIn }: NavProps) {
         
       </div>
       {isLoggedIn ? 
-      <Link href="/">  
+      <Button className={styles.logoutButton} onClick={logout}>  
         <p className={styles.text}>Log out</p>
-      </Link> 
+
+      </Button> 
       :
       <Link href="/login">
         <p className={styles.text}>Log in</p>

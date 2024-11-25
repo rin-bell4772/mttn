@@ -3,6 +3,7 @@ import NextAuth from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
 import User from "@/models/userSchema";
 import bcrypt from "bcryptjs";
+import connectMongoDB from "@/libs/mongoDB";
 
 
 export const {
@@ -19,6 +20,8 @@ export const {
                 password: {},
             },
             async authorize(credentials) {
+                connectMongoDB();
+
                 if (!credentials) return null;
 
                 try {

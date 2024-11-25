@@ -26,20 +26,21 @@ export const Login = () => {
     formData.append('password', password);
 
     try {
-    //  const response = await doCredentialLogin(formData);
-    //   if (response) {
-    //     console.log('Login Successful:', { email, password });
-    //     router.push('/dashboard');
-    //   } else {
-    //     setErrorMessage('Invalid email or password');
-    //   }
+      const response = await doCredentialLogin(formData);
+      if (response) {
+        console.log('doCredLoginResponse', response);
+        router.push('/dashboard');
+        
+      } else {
+        setErrorMessage('Invalid email or password');
+      }
     } catch (err) {
-    //   setErrorMessage('An error occurred during login');
+      setErrorMessage('An error occurred during login');
     }
 
-    // // Clear input fields after logging in or on failed attempt
-    // setEmail('');
-    // setPassword('');
+    // Clear input fields after logging in or on failed attempt
+    setEmail('');
+    setPassword('');
   };
 
   return (
