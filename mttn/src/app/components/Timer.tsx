@@ -5,7 +5,7 @@ import Button from "./Button";
 import React, { useState, useEffect } from "react";
 
 const Timer = () => {
-  const [timeLeft, setTimeLeft] = useState(25 * 60);
+  const [timeLeft, setTimeLeft] = useState(0.25 * 60);
   const [isRunning, setIsRunning] = useState(false);
   const [isBreak, setIsBreak] = useState(false);
 
@@ -19,7 +19,7 @@ const Timer = () => {
     if (timeLeft === 0) {
       clearInterval(timer);
       setIsBreak((prevIsBreak) => !prevIsBreak); 
-      setTimeLeft(isBreak ? 25 * 60 : 25 * 60); // Resets timer (25 min work, 5 min break)
+      setTimeLeft(isBreak ? 0.25 * 60 : 0.05 * 60); // Resets timer (25 min work, 5 min break)
     }
     return () => clearInterval(timer);
   }, [isRunning, timeLeft, isBreak]);
