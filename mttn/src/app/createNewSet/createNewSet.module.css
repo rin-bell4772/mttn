@@ -12,5 +12,24 @@
     justify-content: center;
     align-items: center;
     margin: 2%;
+}
 
+.titleInput {
+    padding: 0.5%;
+    padding-left: 2%;
+    margin-left: 8.5%;
+    background-color: #FFF5EC;
+    font-family: inherit;
+    color: #374d2b;
+    font-size: 1.5rem;
+    border-radius: 25px;
+    border-style: solid;
+    border-color: #374d2b;
+    border-width: 5px;
+    transition: border-color 0.2s ease;
+}
+
+.titleInput:focus {
+    outline: none;
+    border-color: #82a46e;
 }

@@ -20,7 +20,6 @@ type AddCardProps = {
     onAddCard: (cardArray: Cards[]) => void;
 };
 
-
 export default function AddStudySet({onAddCard}: AddCardProps) {
     const [term, setTerm] = useState<string>('');
     const [definition, setDefinition] = useState<string>('');
