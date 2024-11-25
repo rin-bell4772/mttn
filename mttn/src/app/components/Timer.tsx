@@ -28,7 +28,7 @@ const Timer = () => {
   const resetTimer = () => {
     setIsRunning(false);
     setIsBreak(false);
-    setTimeLeft(25 * 60);
+    setTimeLeft(0.25 * 60);
   };
 
   const formatTime = (time) => {
