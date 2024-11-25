@@ -122,9 +122,7 @@ export default function FlashcardSet() {
                 <div className={styles.card}>
                     <div className={styles.upper}>
                         <p>1 of 10</p>
-                        <Button className={styles.button}>
-                            <Image src={star} alt={"star"} width={20}/>
-                        </Button>
+                        
                     </div>
                     <div className={styles.termDef}>
                         <p>Term</p>  
