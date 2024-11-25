@@ -1,4 +1,3 @@
-// context/StudySetContext.tsx
 "use client";
 import { createContext, useContext, useState, ReactNode } from 'react';
 
@@ -22,7 +21,13 @@ type StudySetProviderProps = {
 };
 
 export const StudySetProvider = ({ children }: StudySetProviderProps) => {
-    const [setTitles, setSetTitles] = useState<string[]>([]);
+    const [setTitles, setSetTitles] = useState<string[]>([
+        "Math",
+        "Science",
+        "English",
+        "History",
+        "French"
+    ]);
 
     const updateSetTitles = (newTitles: string[]) => {
         setSetTitles(newTitles);
