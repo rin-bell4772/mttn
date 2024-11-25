@@ -4,7 +4,7 @@ import React, { useState } from 'react';
 import styles from './Login.module.css';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
-import { doCredentialLogin } from '@/app/api/users/login/loginAuthentication';
+import { doCredentialLogin } from '@/app/actions';
 import mongoose from 'mongoose';
 
 type formData = {
