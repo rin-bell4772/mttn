@@ -41,8 +41,12 @@ const dummyArr: Flashcard[] = [
 export default function CreateNewSet(): JSX.Element {
     const [cards, setCards] = useState<Flashcard[]>(dummyArr);
 
-    const addCardHandler = (card: Flashcard) => {
-        setCards((previousCards) => [...previousCards, card]);
+    
+    const addCardHandler = (cardArray: Flashcard[]) => {
+        //setCards((previousCards) => [...previousCards, card]);
+        
+        setCards(() => cardArray);
+
     };
 
     
