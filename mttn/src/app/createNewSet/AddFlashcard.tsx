@@ -78,8 +78,9 @@ export default function AddStudySet({onAddCard}: AddCardProps) {
                         throw new Error('Network response was not ok');
                     }
                     const data = await response.json();
-                    //onAddCard(data);
+                    
                     setItems(data.items);
+                    //onAddCard(data.items);
                 } catch (error) {
                     console.log('Error from ShowItemList: ', error);
                 }
