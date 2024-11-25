@@ -3,7 +3,7 @@ import { useState } from 'react';
 import NewFlashcards from "./createNewSet";
 import Nav from "../components/Nav";
 import Footer from "../components/Footer";
-import Flashcard from './flashcard';
+import Flashcard from './Flashcard';
 import Card from '../components/Card';
 import Image from 'next/image';
 import AddFlashcard from './AddFlashcard';
