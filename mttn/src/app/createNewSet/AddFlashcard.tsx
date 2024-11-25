@@ -45,7 +45,7 @@ export default function AddStudySet({onAddCard}: AddCardProps) {
 
         async function createNewFlashcard(data: {term: string, definition: string, image: string}) {
             // "dummy"user id/set/"dummy"set id
-            const response = await fetch('/api/users/6743ad1daa92502baff9146f/sets/6743afd2aa92502baff91473', {
+            const response = await fetch('/api/users/6743ad1daa92502baff9146f/sets/6743afd2aa92502baff91473/cards', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -73,7 +73,7 @@ export default function AddStudySet({onAddCard}: AddCardProps) {
         useEffect(() => {
             const fetchItems = async () => {
                 try {
-                    const response = await fetch('api/users/6743ad1daa92502baff9146f/sets/6743afd2aa92502baff91473');
+                    const response = await fetch('api/users/6743ad1daa92502baff9146f/sets/6743afd2aa92502baff91473/cards');
                     if (!response.ok) {
                         throw new Error('Network response was not ok');
                     }
