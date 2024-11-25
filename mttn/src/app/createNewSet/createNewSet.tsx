@@ -1,7 +1,7 @@
 "use client"
 import styles from './CreateNewSet.module.css';
 import Card from '../components/Card';
-import Flashcard from './Flashcard';
+import Flashcard from './flashcard';
 import Button from '../components/Button';
 import AddFlashcard from './AddFlashcard';
 import Link from 'next/link';
