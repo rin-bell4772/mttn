@@ -155,7 +155,7 @@ export default function FlashcardSet() {
             {isFlipped ? (
                 <div>
                     <p>{currentCard.definition}</p>
-                    <Image src={currentCard.image} alt="image" width={50}/>
+                    <Image src={currentCard.image} alt="image" width={50} height={50}/>
                 </div>
    
             ) : (
