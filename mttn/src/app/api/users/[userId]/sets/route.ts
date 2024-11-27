@@ -4,6 +4,11 @@ import { NextResponse } from "next/server";
 import { NextRequest } from "next/server";
 
 
+// implement this
+interface RouteParams {
+    params: { userId: string }
+};
+
 // tested
 // get all sets
 export async function GET(request: NextRequest) {

@@ -3,8 +3,13 @@ import Card from "@/models/cardSchema";
 import { NextResponse } from "next/server";
 import { NextRequest } from "next/server";
 
+// implement this
 interface RouteParams {
-    params: { cardId: string }
+    params: { 
+        userId: string,
+        setId: string,
+        cardId: string 
+    }
 }
 
 // tested
