@@ -3,7 +3,7 @@ import NextAuth from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
 import User from "@/models/userSchema";
 import bcrypt from "bcryptjs";
-import connectMongoDB from "@/libs/mongoDB";
+import connectMongoDB from "@/libs/mongodb";
 
 
 export const {
