@@ -35,3 +35,20 @@
     border-color: #82a46e;
     background-color: #FFF5EC;
 }
+
+.button{
+    width: auto;
+    height: auto;
+    background-color: #acd793;
+    border: 3px solid #374d2b;
+    border-radius: 30px;
+    box-shadow: 0px 0px 0px; 
+    color: #364d2a; 
+    transition: background-color 0.3s;
+    position: relative;
+    
+}
+    
+.button:hover {
+    background-color: #4caf4f; 
+}

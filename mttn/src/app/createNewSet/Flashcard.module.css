@@ -4,7 +4,7 @@
 
 .cardCSS {
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
     font-size:larger;
     text-align:center;
 
@@ -15,5 +15,23 @@
     
     margin: 2% 10% 2% 10%;
     padding: 1%;
+
     
+}
+
+.button{
+    width: auto;
+    height: auto;
+    background-color: #acd79300;
+    border: #374d2b00;
+    border-radius: 30px;
+    box-shadow: 0px 0px 0px; 
+    color: #364d2a; 
+    transition: background-color 0.3s;
+    position: relative;
+    
+}
+    
+.button:hover {
+    background-color: #4caf4f42; 
 }

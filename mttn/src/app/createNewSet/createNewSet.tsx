@@ -44,7 +44,7 @@ export default function NewFlashcards({ cards }: cardData) {
                     placeholder="Enter a title"
                 />
                 <Link href="./flashcardSet">
-                    <Button type="button" onClick={handleSave}>
+                    <Button className={styles.button} type="button" onClick={handleSave}>
                         Save
                     </Button>
                 </Link>
