@@ -18,12 +18,35 @@ export default function ChangePassword() {
         setConfirmPassword(event.target.value);
     }
 
-    const submitHandler = (e: React.FormEvent) => {
+    const submitHandler = async (e: React.FormEvent) => {
         e.preventDefault();
-        if (newPassword === confirmPassword) {
-            console.log("Password changed");
-            alert("Password changed");
+        if (newPassword !== confirmPassword) {
+            alert("Passwords do not match");
+            return;
         }
+
+        /* 
+        * This needs to be changed and tested,
+        * add the user id somehow
+        */
+        try {
+            const response = await fetch('/api/users/', {
+                method: 'PUT',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ newPassword }),
+            });
+
+            if (response.ok) {
+                console.log("Password changed");
+            } else {
+                const data = await response.json();
+                setError(data.message);
+            }
+        } catch (err) {
+            console.error("Change password error:", err);
+            setError("An error occurred while changing your password");
+        }
+
         router.push("/dashboard");
     }
     
@@ -55,4 +78,8 @@ export default function ChangePassword() {
             </div>
         </div>
     )
+}
+
+function setError(arg0: string) {
+    throw new Error("Function not implemented.");
 }

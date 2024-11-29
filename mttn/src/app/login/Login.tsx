@@ -52,7 +52,7 @@ export const Login = () => {
 
         <form className={styles.form} onSubmit={handleSubmit}>
           <label htmlFor="email" className={styles.label}>
-            Email or Username
+            Email
           </label>
           <input
             type="text"
