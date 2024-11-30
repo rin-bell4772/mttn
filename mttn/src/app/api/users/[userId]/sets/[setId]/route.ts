@@ -1,18 +1,14 @@
 import connectMongoDB from "@/libs/mongodb";
 import Set from "@/models/setSchema";
+import User from "@/models/userSchema";
 import { NextResponse } from "next/server";
 import { NextRequest } from "next/server";
 
-// implement this
 interface RouteParams {
-    params: { 
-        setId: string,
-        userId: string 
-    }
+    params: { userId: string, setId: string }
 }
 
-// tested
-// get a single set
+// Get a single set
 export async function GET(request: NextRequest, { params }: RouteParams) {
     const { setId } = await params;
     await connectMongoDB();
@@ -20,31 +16,39 @@ export async function GET(request: NextRequest, { params }: RouteParams) {
     return NextResponse.json({ set }, { status: 200 });
 }
 
-// tested
-// update a set
+// Update a set
 export async function PUT(request: NextRequest, { params }: RouteParams) {
     const { setId } = await params;
     const { name } = await request.json();
     await connectMongoDB();
-    await Set.findByIdAndUpdate( setId, { name });
-    return NextResponse.json({ message: "Item updated" }, { status: 200 });
+
+    try {
+        const updatedSet = await Set.findByIdAndUpdate(setId, { name }, { new: true });
+        if (!updatedSet) {
+            return NextResponse.json({ message: "Set not found" }, { status: 404 });
+        }
+
+        return NextResponse.json({ message: "Set updated successfully", set: updatedSet }, { status: 200 });
+    } catch (error) {
+        return NextResponse.json({ message: "Error updating set", error: error.message }, { status: 500 });
+    }
 }
 
-// tested
-// delete a set
+// Delete a set
 export async function DELETE(request: NextRequest, { params }: RouteParams) {
-    const { setId } = await params;
-
-    if (!setId) {
-        return NextResponse.json({ message: "ID is required" }, { status: 400 });
-    }
-
+    const { userId, setId } = await params;
     await connectMongoDB();
-    const deletedItem = await Set.findByIdAndDelete(setId);
 
-    if (!deletedItem) {
-        return NextResponse.json({ message: "Item not found" }, { status: 404 });
+    try {
+        const deletedSet = await Set.findByIdAndDelete(setId);
+        if (!deletedSet) {
+            return NextResponse.json({ message: "Set not found" }, { status: 404 });
+        }
+
+        await User.findByIdAndUpdate(userId, { $pull: { sets: setId } });
+
+        return NextResponse.json({ message: "Set deleted successfully" }, { status: 200 });
+    } catch (error) {
+        return NextResponse.json({ message: "Error deleting set", error: error.message }, { status: 500 });
     }
-
-    return NextResponse.json({ message: "Item deleted" }, { status: 200 });
 }
