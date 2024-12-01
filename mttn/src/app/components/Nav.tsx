@@ -8,12 +8,17 @@ import Image from 'next/image';
 import { doLogout } from '@/app/actions';
 import Button from './Button';
 
+import { useSession } from 'next-auth/react';
+
 type NavProps = {
   isLoggedIn: boolean;
 };
 
 export default function Nav({ isLoggedIn }: NavProps) {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+
+  const { data: session } = useSession();
+  console.log(session);
 
   const toggleSidebar = (e: React.MouseEvent) => {
     e.preventDefault();
@@ -23,7 +28,6 @@ export default function Nav({ isLoggedIn }: NavProps) {
   const logout = async () => {
     await doLogout();
   }
-
   return (
     <nav className={styles.nav}>
       <div className={styles.logos}>
@@ -43,15 +47,18 @@ export default function Nav({ isLoggedIn }: NavProps) {
           }
         
       </div>
-      {isLoggedIn ? 
+      {isLoggedIn ? (
+        <>
       <Button className={styles.logoutButton} onClick={logout}>  
         <p className={styles.text}>Log out</p>
-
       </Button> 
-      :
+      {session && <p>User ID: {session.user.id}</p>}
+      </>
+      ) : (
       <Link href="/login">
         <p className={styles.text}>Log in</p>
       </Link>
+      )
     }
 
     <Sidebar isOpen={isSidebarOpen} onCloseAction={() => setIsSidebarOpen(false)} />
