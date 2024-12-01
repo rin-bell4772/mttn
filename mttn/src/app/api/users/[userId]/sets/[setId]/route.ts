@@ -30,7 +30,7 @@ export async function PUT(request: NextRequest, { params }: RouteParams) {
 
         return NextResponse.json({ message: "Set updated successfully", set: updatedSet }, { status: 200 });
     } catch (error) {
-        return NextResponse.json({ message: "Error updating set", error: error.message }, { status: 500 });
+        return NextResponse.json({ message: "Error updating set", error }, { status: 500 });
     }
 }
 
@@ -49,6 +49,6 @@ export async function DELETE(request: NextRequest, { params }: RouteParams) {
 
         return NextResponse.json({ message: "Set deleted successfully" }, { status: 200 });
     } catch (error) {
-        return NextResponse.json({ message: "Error deleting set", error: error.message }, { status: 500 });
+        return NextResponse.json({ message: "Error deleting set", error }, { status: 500 });
     }
 }

@@ -9,9 +9,6 @@ interface RouteParams {
 }
 
 // implement this
-interface RouteParams {
-    params: { userId: string }
-};
 
 // tested
 // get all sets

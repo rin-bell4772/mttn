@@ -21,7 +21,7 @@ export async function GET(request: NextRequest, { params }: RouteParams) {
 
         return NextResponse.json({ cards: set.cards }, { status: 200 });
     } catch (error) {
-        return NextResponse.json({ message: "Error fetching cards", error: error.message }, { status: 500 });
+        return NextResponse.json({ message: "Error fetching cards", error }, { status: 500 });
     }
 }
 
@@ -44,6 +44,6 @@ export async function POST(request: NextRequest, { params }: RouteParams) {
             return NextResponse.json({ message: "Set not found" }, { status: 404 });
         }
     } catch (error) {
-        return NextResponse.json({ message: "Error creating card", error: error.message }, { status: 500 });
+        return NextResponse.json({ message: "Error creating card", error }, { status: 500 });
     }
 }

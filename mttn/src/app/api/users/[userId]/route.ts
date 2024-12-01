@@ -21,7 +21,7 @@ export async function GET(request: NextRequest, { params }: RouteParams) {
 
         return NextResponse.json({ sets: user.sets }, { status: 200 });
     } catch (error) {
-        return NextResponse.json({ message: "Error fetching sets", error: error.message }, { status: 500 });
+        return NextResponse.json({ message: "Error fetching sets", error}, { status: 500 });
     }
 }
 
@@ -73,6 +73,6 @@ export async function POST(request: NextRequest, { params }: RouteParams) {
             return NextResponse.json({ message: "User not found" }, { status: 404 });
         }
     } catch (error) {
-        return NextResponse.json({ message: "Error creating set", error: error.message }, { status: 500 });
+        return NextResponse.json({ message: "Error creating set", error }, { status: 500 });
     }
 }
