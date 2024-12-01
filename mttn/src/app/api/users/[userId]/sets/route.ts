@@ -1,11 +1,12 @@
 import connectMongoDB from "@/libs/mongodb";
 import Set from "@/models/setSchema";
 import Card from "@/models/cardSchema";
+import User from "@/models/userSchema";
 import { NextResponse } from "next/server";
 import { NextRequest } from "next/server";
 
 interface RouteParams {
-    params: { userId: string, setId: string }
+    params: { userId: string }
 }
 
 // implement this
@@ -14,7 +15,6 @@ interface RouteParams {
 export async function GET(request: NextRequest, { params }: RouteParams) {
     const { userId } = await params;
     await connectMongoDB();
-
     try {
         const user = await User.findById(userId).populate('sets');
         if (!user) {
