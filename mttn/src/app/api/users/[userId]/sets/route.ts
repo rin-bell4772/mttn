@@ -10,42 +10,42 @@ interface RouteParams {
 
 // implement this
 
-// tested
-// get all sets
-// export async function GET(request: NextRequest) {
-//     await connectMongoDB();
-//     const sets = await Set.find();
-//     return NextResponse.json({ sets });
-// }
+// Get all sets for a user
+export async function GET(request: NextRequest, { params }: RouteParams) {
+    const { userId } = await params;
+    await connectMongoDB();
 
-// tested
-// create a set
-// export async function POST(request: NextRequest) {
-//     const { name } = await request.json();
-//     await connectMongoDB();
-//     await Set.create({ name });
-//     return NextResponse.json({ message: "Item added successfully" }, { status: 201 });
-// }
+    try {
+        const user = await User.findById(userId).populate('sets');
+        if (!user) {
+            return NextResponse.json({ message: "User not found" }, { status: 404 });
+        }
 
-// Create a card
-// export async function POST(request: NextRequest, { params }: RouteParams) {
-//     const { setId } = params;
-//     const { term, definition, image } = await request.json();
-//     await connectMongoDB();
+        return NextResponse.json({ sets: user.sets }, { status: 200 });
+    } catch (error) {
+        return NextResponse.json({ message: "Error fetching sets", error}, { status: 500 });
+    }
+}
 
-//     try {
-//         const newCard = new Card({ term, definition, image });
-//         await newCard.save();
+// Create a set
+export async function POST(request: NextRequest, { params }: RouteParams) {
+    const { userId } = await params;
+    const { name } = await request.json();
+    await connectMongoDB();
 
-//         const set = await Set.findById(setId);
-//         if (set) {
-//             set.cards.push(newCard._id);
-//             await set.save();
-//             return NextResponse.json({ message: "Card created successfully" }, { status: 201 });
-//         } else {
-//             return NextResponse.json({ message: "Set not found" }, { status: 404 });
-//         }
-//     } catch (error) {
-//         return NextResponse.json({ message: "Error creating card", error: error.message }, { status: 500 });
-//     }
-// }
+    try {
+        const newSet = new Set({ name, cards: [] });
+        await newSet.save();
+
+        const user = await User.findById(userId);
+        if (user) {
+            user.sets.push(newSet._id);
+            await user.save();
+            return NextResponse.json({ message: "Set created successfully" }, { status: 201 });
+        } else {
+            return NextResponse.json({ message: "User not found" }, { status: 404 });
+        }
+    } catch (error) {
+        return NextResponse.json({ message: "Error creating set", error }, { status: 500 });
+    }
+}

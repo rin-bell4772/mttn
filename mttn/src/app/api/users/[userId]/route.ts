@@ -8,20 +8,20 @@ interface RouteParams {
     params: { userId: string };
 }
 
-// Get all sets for a user
+// Get a user by ID
 export async function GET(request: NextRequest, { params }: RouteParams) {
     const { userId } = await params;
     await connectMongoDB();
 
     try {
-        const user = await User.findById(userId).populate('sets');
-        if (!user) {
+        const user = await User.findById(userId);
+        if (user) {
+            return NextResponse.json(user, { status: 200 });
+        } else {
             return NextResponse.json({ message: "User not found" }, { status: 404 });
         }
-
-        return NextResponse.json({ sets: user.sets }, { status: 200 });
     } catch (error) {
-        return NextResponse.json({ message: "Error fetching sets", error}, { status: 500 });
+        return NextResponse.json({ message: "Error fetching user", error }, { status: 500 });
     }
 }
 
@@ -54,25 +54,3 @@ export async function DELETE(request: NextRequest, { params }: RouteParams) {
     return NextResponse.json({ message: "Item deleted" }, { status: 200 });
 }
 
-// Create a set
-export async function POST(request: NextRequest, { params }: RouteParams) {
-    const { userId } = await params;
-    const { name } = await request.json();
-    await connectMongoDB();
-
-    try {
-        const newSet = new Set({ name, cards: [] });
-        await newSet.save();
-
-        const user = await User.findById(userId);
-        if (user) {
-            user.sets.push(newSet._id);
-            await user.save();
-            return NextResponse.json({ message: "Set created successfully" }, { status: 201 });
-        } else {
-            return NextResponse.json({ message: "User not found" }, { status: 404 });
-        }
-    } catch (error) {
-        return NextResponse.json({ message: "Error creating set", error }, { status: 500 });
-    }
-}
