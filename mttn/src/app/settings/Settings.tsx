@@ -28,7 +28,7 @@ export default function Settings( { settings }: SettingsProps) {
                     </div>
                     <div className={styles.settingAndLink}>
                         <p>Change Password</p>
-                        <Link href="/changePassword">Edit</Link>
+                        <Link href="/changeSettings">Edit</Link>
                     </div>
                 </div>
             </div>

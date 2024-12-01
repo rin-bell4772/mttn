@@ -8,7 +8,13 @@ import ChangeSettings from "./ChangeSettings";
 
 export default function ChangeSettingsPage() {
   const { data: session } = useSession();
-  const [userData, setUserData] = useState(null);
+  interface UserData {
+    username: string;
+    email: string;
+    profilePicture?: string;
+  }
+
+  const [userData, setUserData] = useState<UserData | null>(null);
 
   const fetchUserData = async (userId: string) => {
     try {
