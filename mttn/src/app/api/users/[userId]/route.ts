@@ -29,7 +29,7 @@ export async function GET(request: NextRequest, { params }: RouteParams) {
 // tested
 // Update a user
 export async function PUT(request: NextRequest, { params }: RouteParams) {
-    const { userId } = params;
+    const { userId } = await params;
     const { username, email, password, profilePicture } = await request.json();
     await connectMongoDB();
 

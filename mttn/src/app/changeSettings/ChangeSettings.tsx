@@ -4,6 +4,8 @@ import React, { useState } from 'react';
 import styles from './ChangeSettings.module.css';
 import { useRouter } from 'next/navigation';
 
+import { useSession } from 'next-auth/react';
+
 type ChangeSettingsProps = {
     settings: {
         email: string,
@@ -18,6 +20,9 @@ export default function ChangeSettings({ settings }: ChangeSettingsProps) {
     const [profilePicture, setProfilePicture] = useState(settings?.profilePicture || '');
     const router = useRouter();
 
+    const { data: session } = useSession();
+
+
     const emailHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
         setEmail(e.target.value);
     }
@@ -30,10 +35,38 @@ export default function ChangeSettings({ settings }: ChangeSettingsProps) {
         setProfilePicture(e.target.value);
     }
 
-    const submitHandler = (e: React.FormEvent) => {
+    const submitHandler = async (e: React.FormEvent) => {
         e.preventDefault();
-        console.log("Settings changed");
-        alert("Settings changed");
+
+        if (!session?.user?.id) {
+          console.error("User ID is not available");
+          return;
+        }
+    
+        const updateData = {
+          username,
+          email,
+          profilePicture,
+        };
+    
+        try {
+          const response = await fetch(`/api/users/${session.user.id}`, {
+            method: "PUT",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify(updateData),
+          });
+    
+          if (response.ok) {
+            console.log("Settings updated successfully");
+          } else {
+            const data = await response.json();
+            console.error("Error updating settings:", data.message);
+          }
+        } catch (error) {
+          console.error("An error occurred while updating settings:", error);
+        }
         router.push("/settings");
     }
 

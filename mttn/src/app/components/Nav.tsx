@@ -52,7 +52,7 @@ export default function Nav({ isLoggedIn }: NavProps) {
       <Button className={styles.logoutButton} onClick={logout}>  
         <p className={styles.text}>Log out</p>
       </Button> 
-      {session && <p>User ID: {session.user.id}</p>}
+      {session?.user && <p>User ID: {session.user.id}</p>}
       </>
       ) : (
       <Link href="/login">
