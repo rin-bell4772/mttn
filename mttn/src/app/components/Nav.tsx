@@ -1,5 +1,5 @@
 "use client";
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import styles from './Nav.module.css';
 import sidebar from '../images/sidebar.png';
 import Sidebar from './Sidebar';
@@ -17,8 +17,7 @@ type NavProps = {
 export default function Nav({ isLoggedIn }: NavProps) {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
-  const { data: session } = useSession();
-  console.log(session);
+  const { data: session, status } = useSession();
 
   const toggleSidebar = (e: React.MouseEvent) => {
     e.preventDefault();
@@ -52,7 +51,9 @@ export default function Nav({ isLoggedIn }: NavProps) {
       <Button className={styles.logoutButton} onClick={logout}>  
         <p className={styles.text}>Log out</p>
       </Button> 
-      {session?.user && <p>User ID: {session.user.id}</p>}
+      {status === "authenticated" && session?.user?.id && (
+            <p>User ID: {session.user.id}</p>
+          )}
       </>
       ) : (
       <Link href="/login">

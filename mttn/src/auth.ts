@@ -30,7 +30,7 @@ export const {
                     console.log(user);
                     if (user) {
                         const isMatch = await bcrypt.compare(
-                            credentials.password,
+                            credentials.password as string,
                             user.password
                         );
 
@@ -60,8 +60,8 @@ export const {
     ],
     callbacks: {
         async session( {session, token} ) {
-          session.user.id = token.id;
-          session.user.email = token.email;
+          session.user.id = token.id as string;
+          session.user.email = token.email ?? '';
           session.user.name = token.name;
           console.log("session created")
           return session;
