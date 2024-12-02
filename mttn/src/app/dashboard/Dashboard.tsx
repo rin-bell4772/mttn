@@ -2,26 +2,50 @@
 import styles from './Dashboard.module.css';
 import AddStudySet from '../components/AddStudySet';
 import StudySet from '../components/StudySet';
-import { useStudySet } from '../context/StudySetContext';
+// import { useStudySet } from '../context/StudySetContext';
+import { useSession } from "next-auth/react";
+import { useState, useEffect } from 'react';
+
+interface StudySet {
+    name: string;
+}
 
 export default function Dashboard() {
-    const { setTitles } = useStudySet();
+    const [studySets, setStudySets] = useState<StudySet[]>([]);
+    const { data: session } = useSession();
+    const userId = session?.user?.id;
+
+    // GET request for all sets
+    useEffect(() => {
+        const fetchStudySets = async () => {
+            try {
+                if (!userId) {
+                    console.error("User ID is not available");
+                    return;
+                }       
+
+                const response = await fetch(`/api/users/${userId}/sets`);
+
+                if (!response.ok) {
+                    throw new Error(`HTTP error! Status: ${response.status}`);
+                }
+                    
+                const data = await response.json();
+                setStudySets(data.sets);
+            } catch (error) {
+                console.error("Error fetching study sets:", error);
+            }
+        }
+        fetchStudySets();
+    }, [session]);
 
     return (
         <div className={styles.dashboard}>
-            <h1>FAVORITES</h1>
-            <div className={styles.scroll}>
-                <AddStudySet />
-                {/* Map through favorite sets if you have a way to identify them */}
-                {setTitles.slice(0, 4).map((title, index) => (
-                    <StudySet key={index} title={title} />
-                ))}
-            </div>
             <h1>ALL</h1>
             <div className={styles.grid}>
                 <AddStudySet />
-                {setTitles.map((title, index) => (
-                    <StudySet key={index} title={title} />
+                {studySets.map((set, index) => (
+                    <StudySet key={index} title={set.name} />
                 ))}
             </div>
         </div>
