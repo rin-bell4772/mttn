@@ -7,6 +7,7 @@ import { useSetId } from '../context/SetIdContext';
 interface StudySetProps {
     title: string;
     id: string;
+    onDelete: () => void;
 }
 
 export default function StudySet(props: StudySetProps) {
@@ -27,6 +28,8 @@ export default function StudySet(props: StudySetProps) {
             if (!response.body) {
                 throw new Error('Network response was not ok...');
             }
+
+            props.onDelete();
 
         } catch (error) {
             console.log('Error in handleDelete: ', error);
