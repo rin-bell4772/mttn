@@ -11,15 +11,73 @@
     gap: 15px;
     color: #374D2B;
     background-color: #ACD793;
-    font-family: "Gochi Hand", cursive;
+    font-family: inherit;
     font-size: large;
     border-style: solid;
     border-radius: 20px;
     border-color: #374D2B;
     border-width: 3px;
+    position: relative;
 }
 
 .studySet:hover {
     transform: scale(1.1); 
     transition: 0.2s ease;
+}
+
+/* Hide buttons by default */
+.editButton, .deleteButton {
+    opacity: 0;
+    visibility: hidden;
+    position: absolute;
+    font-family: inherit;
+    font-size: 14px;
+    padding: 5px 10px;
+    border: none;
+    background-color: #374D2B;
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+/* Edit button appears top-left corner */
+.studySet:hover .editButton {
+    opacity: 1;
+    visibility: visible;
+    top: 10px;
+    left: 10px;
+    background-color: #374D2B;
+}
+
+/* Delete button appears bottom-right corner */
+.studySet:hover .deleteButton {
+    opacity: 1;
+    visibility: visible;
+    bottom: 10px; 
+    right: 10px;
+    background-color: #b90909;
+}
+
+.editButton:hover {
+    background-color: white !important; 
+    outline: solid #374D2B 3px;
+    color: #374D2B;
+}
+
+.deleteButton:hover {
+    background-color: white !important; 
+    outline: solid #b90909 3px;
+    color: #b90909;
+}
+
+.editButton:active {
+    background-color: #374D2B !important;
+    outline: solid #374D2B 3px;
+    color: white; 
+}
+
+.deleteButton:active {
+    background-color: #b90909 !important;
+    outline: solid #b90909 3px;
+    color: white; 
 }
