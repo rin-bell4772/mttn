@@ -14,7 +14,7 @@ import { useSession } from 'next-auth/react';
 import {useSetId} from '../context/SetIdContext';
 
 
-type Cards = {
+type Cards = { 
     id: number;
     term: string;
     definition: string;
@@ -30,14 +30,13 @@ type AddCardProps = {
 export default function AddStudySet({onAddCard}: AddCardProps) {
     const {data: session} = useSession();
     const userId = session?.user?.id;
-//    const setId = session?.user?.id?.sets?.id;
 
     const [term, setTerm] = useState<string>('');
     const [definition, setDefinition] = useState<string>('');
     const [image, setImageUrl] = useState<string>('');
     
     interface CardData {
-        id: number;
+        id: string;
         term: string;
         definition: string;
         image: string;
@@ -65,7 +64,13 @@ export default function AddStudySet({onAddCard}: AddCardProps) {
         
         async function createNewFlashcard(data: {term: string, definition: string, image: string}) {
             try {
-                const response = await fetch(`/api/users/${userId}/sets/${props.id}/cards`, {
+                if (!userId) {
+                    console.error("User ID is not available");
+                    return;
+                }
+
+
+                const response = await fetch(`/api/users/${userId}/sets/674be216fa52ad698391058b/cards`, {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
@@ -107,7 +112,7 @@ export default function AddStudySet({onAddCard}: AddCardProps) {
             fetchCards();
         //}, []);  
         //createNewFlashcard(newCard);  
-        //useEffect(() => {fetchCards}, []);
+        useEffect(() => {fetchCards}, []);
         //onAddCard(newCard);
         
         setTerm('');
@@ -118,68 +123,7 @@ export default function AddStudySet({onAddCard}: AddCardProps) {
 
     };
     
-    /*
-    // GET REQUEST
-    interface CardData {
-        term: string;
-        email: string;
-        imageUrl?: string;
-    }
-
-    const [cardData, setCardData] = useState<CardData | null>(null);
-
-    useEffect(() => {
-        const fetchCards = async () => {
-            try {
-                const response = await fetch ('api/users/6743ad1daa92502baff9146f/sets/6743afd2aa92502baff91473/cards');
-                
-                if (!response.ok) {
-                    throw new Error('Network response was not ok');
-                }
-                
-                const data = await response.json();
-                setCardData(data.cards);
-            
-            } catch(error) {
-                console.error("Error fetching cards: ", error);
-            }
-            
-        }
-        fetchCards();
-    }, [session]);
-    */
-
-    /*
-    const [cardData, setCardData] = useState<CardData | null>(null);
-    const fetchCards = async (userId: string, setId:string) => {
-        try {
-            const response = await fetch ('api/users/6743ad1daa92502baff9146f/sets/6743afd2aa92502baff91473/cards');
-            if (!response.ok) {
-                throw new Error('Network response was not ok');
-            }
-            const cardjson = await response.json();
-            const data = cardjson.cards;
-            //const data = JSON.parse(cardjson);
-            //return cardjson;
-            return data;
-        } catch(error) {
-            console.log('Error from ShowItemList: ', error);
-            return null;
-        }
-    }
-    useEffect(() => {
-        if (session?.user?.id) {
-            fetchCards("6743ad1daa92502baff9146f", "6743afd2aa92502baff91473").then((data) => {
-                setCardData(data);
-                
-            });
-        }
-        
-    }, [session]);
-    console.log(cardData);
-    //console.log(cardArr);
-    //console.log(fetchCards("6743ad1daa92502baff9146f", "6743afd2aa92502baff91473"));
-    */
+   
 
     return (
        

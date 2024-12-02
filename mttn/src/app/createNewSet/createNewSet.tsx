@@ -11,7 +11,7 @@ import { useSession } from "next-auth/react";
 import { useSetId } from '../context/SetIdContext';
 
 type Flashcards = {
-    id: string;
+    id: number;
     term: string;
     definition: string;
     image: string;
@@ -93,7 +93,7 @@ export default function NewFlashcards({ cards }: cardData, props: Flashcards) {
     //useEffect(() => {
         const fetchCards = async () => {
             try {
-                const response = await fetch (`api/users/${userId}/sets/${props.id}/cards`);
+                const response = await fetch (`api/users/${userId}/sets/${setId}/cards`);
                 
                 if (!response.ok) {
                     throw new Error('Network response was not ok');

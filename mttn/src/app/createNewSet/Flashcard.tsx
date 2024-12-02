@@ -11,7 +11,7 @@ import { useSetId } from '../context/SetIdContext';
 
 type FlashcardProps = {
     flashcard: {
-        id: string;
+        id: number;
         term: string;
         definition: string;
         image: string;
