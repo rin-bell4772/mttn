@@ -5,7 +5,7 @@ import Flashcard from './Flashcard';
 import Button from '../components/Button';
 import AddFlashcard from './AddFlashcard';
 import Link from 'next/link';
-import { useState } from 'react';
+import { useState, FormEvent, useEffect } from 'react';
 import { useStudySet } from '../context/StudySetContext';
 import { useSession } from "next-auth/react";
 
@@ -55,6 +55,7 @@ export default function NewFlashcards({ cards }: cardData) {
         }
     };
 
+    // POST request for dashboard
     const createSet = async (userId: string, title: string) => {
 
         try {
@@ -77,6 +78,36 @@ export default function NewFlashcards({ cards }: cardData) {
 
     }
 
+    // GET REQUEST
+    interface CardData {
+        id: number;
+        term: string;
+        email: string;
+        imageUrl?: string;
+    }
+
+    const [cardData, setCardData] = useState<CardData[]>([]);
+
+    useEffect(() => {
+        const fetchCards = async () => {
+            try {
+                const response = await fetch (`api/users/${userId}/sets/674be216fa52ad698391058b/cards`);
+                
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                
+                const data = await response.json();
+                setCardData(data.cards);
+            
+            } catch(error) {
+                console.error("Error fetching cards: ", error);
+            }
+            
+        }
+        fetchCards();
+    }, [session]);
+
     return (
         <div>
             <div className={styles.header}>
@@ -95,9 +126,12 @@ export default function NewFlashcards({ cards }: cardData) {
             </div>
 
             <div>
-                {cards.map((card) => (
-                    <Flashcard key={card.id} flashcard={card} />
+                {cardData.map((card, index) => (
+                    <Flashcard key={index} flashcard={card} />
                 ))}
+                {/*{cards.map((card) => (
+                    <Flashcard key={card.id} flashcard={card} />
+                ))}*/}
             </div>
         </div>
     );

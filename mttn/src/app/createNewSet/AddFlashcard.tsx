@@ -26,6 +26,8 @@ type AddCardProps = {
 
 export default function AddStudySet({onAddCard}: AddCardProps) {
     const {data: session} = useSession();
+    const userId = session?.user?.id;
+    const setId = session?.user?.id?.sets?.id;
 
     const [term, setTerm] = useState<string>('');
     const [definition, setDefinition] = useState<string>('');
@@ -51,7 +53,7 @@ export default function AddStudySet({onAddCard}: AddCardProps) {
         
         async function createNewFlashcard(data: {term: string, definition: string, image: string}) {
             try {
-                const response = await fetch('/api/users/6743ad1daa92502baff9146f/sets/6743afd2aa92502baff91473/cards', {
+                const response = await fetch(`/api/users/${userId}/sets/674be216fa52ad698391058b/cards`, {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
@@ -80,7 +82,7 @@ export default function AddStudySet({onAddCard}: AddCardProps) {
         setImageUrl('');
     };
     
-
+    /*
     // GET REQUEST
     interface CardData {
         term: string;
@@ -88,6 +90,30 @@ export default function AddStudySet({onAddCard}: AddCardProps) {
         imageUrl?: string;
     }
 
+    const [cardData, setCardData] = useState<CardData | null>(null);
+
+    useEffect(() => {
+        const fetchCards = async () => {
+            try {
+                const response = await fetch ('api/users/6743ad1daa92502baff9146f/sets/6743afd2aa92502baff91473/cards');
+                
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                
+                const data = await response.json();
+                setCardData(data.cards);
+            
+            } catch(error) {
+                console.error("Error fetching cards: ", error);
+            }
+            
+        }
+        fetchCards();
+    }, [session]);
+    */
+
+    /*
     const [cardData, setCardData] = useState<CardData | null>(null);
     const fetchCards = async (userId: string, setId:string) => {
         try {
@@ -117,7 +143,8 @@ export default function AddStudySet({onAddCard}: AddCardProps) {
     console.log(cardData);
     //console.log(cardArr);
     //console.log(fetchCards("6743ad1daa92502baff9146f", "6743afd2aa92502baff91473"));
-    
+    */
+
     return (
        
         <div className={styles.addFlashcard}> 
