@@ -10,6 +10,9 @@ import Card from '../components/Card';
 import { create } from 'domain';
 //import { useRouter } from 'next/router';
 import { useSession } from 'next-auth/react';
+//import fetchCards from './CreateNewSet';
+import {useSetId} from '../context/SetIdContext';
+
 
 type Cards = {
     id: number;
@@ -27,14 +30,23 @@ type AddCardProps = {
 export default function AddStudySet({onAddCard}: AddCardProps) {
     const {data: session} = useSession();
     const userId = session?.user?.id;
-    const setId = session?.user?.id?.sets?.id;
+//    const setId = session?.user?.id?.sets?.id;
 
     const [term, setTerm] = useState<string>('');
     const [definition, setDefinition] = useState<string>('');
     const [image, setImageUrl] = useState<string>('');
     
+    interface CardData {
+        id: number;
+        term: string;
+        definition: string;
+        image: string;
+    }
+    const [cardData, setCardData] = useState<CardData[]>([]);
+
     
-    const submitHandler = (event: FormEvent) => {
+
+    const submitHandler = (event: FormEvent, props: CardData) => {
         event.preventDefault();
 
         if (!term || !definition) {
@@ -53,7 +65,7 @@ export default function AddStudySet({onAddCard}: AddCardProps) {
         
         async function createNewFlashcard(data: {term: string, definition: string, image: string}) {
             try {
-                const response = await fetch(`/api/users/${userId}/sets/674be216fa52ad698391058b/cards`, {
+                const response = await fetch(`/api/users/${userId}/sets/${props.id}/cards`, {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
@@ -73,13 +85,37 @@ export default function AddStudySet({onAddCard}: AddCardProps) {
             }
         }
         
-        createNewFlashcard(newCard);        
-
+        createNewFlashcard(newCard);  
+        
+        //useEffect(() => {
+            const fetchCards = async () => {
+                try {
+                    const response = await fetch (`api/users/${userId}/sets/674be216fa52ad698391058b/cards`);
+                    
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok');
+                    }
+                    
+                    const data = await response.json();
+                    setCardData(data.cards);
+                
+                } catch(error) {
+                    console.error("Error fetching cards: ", error);
+                }
+                
+            }
+            fetchCards();
+        //}, []);  
+        //createNewFlashcard(newCard);  
+        //useEffect(() => {fetchCards}, []);
         //onAddCard(newCard);
         
         setTerm('');
         setDefinition('');
         setImageUrl('');
+
+        
+
     };
     
     /*

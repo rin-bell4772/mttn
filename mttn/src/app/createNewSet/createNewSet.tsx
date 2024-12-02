@@ -8,9 +8,10 @@ import Link from 'next/link';
 import { useState, FormEvent, useEffect } from 'react';
 import { useStudySet } from '../context/StudySetContext';
 import { useSession } from "next-auth/react";
+import { useSetId } from '../context/SetIdContext';
 
 type Flashcards = {
-    id: number;
+    id: string;
     term: string;
     definition: string;
     image: string;
@@ -20,11 +21,12 @@ type cardData = {
     cards: Flashcards[];
 };
 
-export default function NewFlashcards({ cards }: cardData) {
+export default function NewFlashcards({ cards }: cardData, props: Flashcards) {
     const [title, setTitle] = useState("Animals");
     // const { setTitles, updateSetTitles } = useStudySet();
     const { data: session } = useSession();
     const userId = session?.user?.id;
+    const { setId, updateSetId } = useSetId();
 
     // Changes title of study set (keep this)
     const handleTitleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -88,10 +90,10 @@ export default function NewFlashcards({ cards }: cardData) {
 
     const [cardData, setCardData] = useState<CardData[]>([]);
 
-    useEffect(() => {
+    //useEffect(() => {
         const fetchCards = async () => {
             try {
-                const response = await fetch (`api/users/${userId}/sets/674be216fa52ad698391058b/cards`);
+                const response = await fetch (`api/users/${userId}/sets/${props.id}/cards`);
                 
                 if (!response.ok) {
                     throw new Error('Network response was not ok');
@@ -106,7 +108,8 @@ export default function NewFlashcards({ cards }: cardData) {
             
         }
         fetchCards();
-    }, [session]);
+    //}, []);
+    useEffect(() => {fetchCards()}, []);
 
     return (
         <div>
@@ -129,18 +132,7 @@ export default function NewFlashcards({ cards }: cardData) {
                 {cardData.map((card, index) => (
                     <Flashcard key={index} flashcard={card} />
                 ))}
-                {/*{cards.map((card) => (
-                    <Flashcard key={card.id} flashcard={card} />
-                ))}*/}
             </div>
         </div>
     );
 }
-
-/*
-<div className={styles.addCard}>
-                <Card>
-                    <AddFlashcard onAddCard={}/>
-                </Card>
-            </div>
-*/

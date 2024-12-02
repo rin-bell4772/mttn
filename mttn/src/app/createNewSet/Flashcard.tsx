@@ -5,12 +5,13 @@ import Image from 'next/image';
 import Button from '../components/Button';
 import Delete from '../images/x-img.png';
 import { FormEvent, useState, useEffect } from 'react';
-
+import { useSession } from 'next-auth/react';
+import { useSetId } from '../context/SetIdContext';
 // eek
 
 type FlashcardProps = {
     flashcard: {
-        id: number;
+        id: string;
         term: string;
         definition: string;
         image: string;
@@ -18,12 +19,18 @@ type FlashcardProps = {
 }
 
 export default function Flashcard({flashcard}: FlashcardProps) {
+    const {data: session} = useSession();
+    const {setId, updateSetId } = useSetId();
+    //const {cardId, updateCardId}
+    const userId = session?.user?.id;
+
+    /*
     const deleteHandler = (event: FormEvent) => {
         event.preventDefault();
-
+        
         const onDeleteClick = async () => {
             try {
-                const response = await fetch('/api/users/6743ad1daa92502baff9146f/sets/6743afd2aa92502baff91473/cards/', {
+                const response = await fetch(`/api/users/${userId}/sets/674be216fa52ad698391058b/cards/674be216fa52ad698391058b`, {
                     method: 'DELETE',
                 });
                 if (!response.ok) {
@@ -34,7 +41,13 @@ export default function Flashcard({flashcard}: FlashcardProps) {
                 console.log('Error in deleteClick');
             }
         }
-    }
+
+    }*/
+    /*const deleteHandler = async () => {
+        try {
+            const response = await fetch(`/api/users/${userId}/sets/${flashcard.id}`)
+        }
+    };*/
     
     
     return (

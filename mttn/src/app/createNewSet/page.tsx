@@ -49,13 +49,6 @@ export default function CreateNewSet(): JSX.Element {
 
     };
     
-    /*
-    const addCardHandler = (card: Flashcard) => {
-        setCards((previousCards) => [...previousCards, card]);
-        
-        
-
-    };*/
 
     
     return (
