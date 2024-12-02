@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import styles from './StudySet.module.css';
 import { useSession } from "next-auth/react";
 
@@ -11,19 +11,31 @@ interface StudySetProps {
 
 export default function StudySet(props: StudySetProps) {
     const { data: session } = useSession();
-    const { updateSetId } = useSetId();
+    const { setId, updateSetId } = useSetId();
+    const userId = session?.user?.id;
 
     const handleEdit = () => {
         // Insert edit code here
     };
 
-    const handleDelete = () => {
-        // Insert delete code here
-    };
+    const handleDelete = async () => {
+        try {
+            const response = await fetch(`/api/users/${userId}/sets/${props.id}`, {
+                method: 'DELETE',
+            });
+
+            if (!response.body) {
+                throw new Error('Network response was not ok...');
+            }
+
+        } catch (error) {
+            console.log('Error in handleDelete: ', error);
+        }
+     };
 
     const handleClick = () => {
-        // Insert code here
-        updateSetId(props.id)
+        updateSetId(props.id);
+        console.log(setId);
     };
 
     return (
