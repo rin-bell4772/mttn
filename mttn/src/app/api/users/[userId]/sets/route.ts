@@ -1,5 +1,6 @@
 import connectMongoDB from "@/libs/mongodb";
 import Set from "@/models/setSchema";
+import { ISet } from "@/models/setSchema";
 import Card from "@/models/cardSchema";
 import User from "@/models/userSchema";
 import { NextResponse } from "next/server";
@@ -39,7 +40,7 @@ export async function POST(request: NextRequest, { params }: RouteParams) {
 
         const user = await User.findById(userId);
         if (user) {
-            user.sets.push(newSet._id);
+            user.sets.push(newSet._id as unknown as ISet);
             await user.save();
             return NextResponse.json({ message: "Set created successfully" }, { status: 201 });
         } else {

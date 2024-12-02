@@ -1,12 +1,13 @@
 "use client";
 import { AppProps } from 'next/app';
 import { StudySetProvider } from './context/StudySetContext';
+import { SetIdProvider } from './context/SetIdContext';
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (
-    <StudySetProvider>
+    <SetIdProvider>
       <Component {...pageProps} />
-    </StudySetProvider>
+    </SetIdProvider>
   );
 }
 
