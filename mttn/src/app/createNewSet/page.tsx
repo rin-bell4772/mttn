@@ -1,6 +1,6 @@
 "use client";
 import { useState } from 'react';
-import NewFlashcards from "./createNewSet";
+import NewFlashcards from "./CreateNewSet";
 import Nav from "../components/Nav";
 import Footer from "../components/Footer";
 import Flashcard from './Flashcard';
@@ -41,21 +41,21 @@ const dummyArr: Flashcard[] = [
 export default function CreateNewSet(): JSX.Element {
     const [cards, setCards] = useState<Flashcard[]>(dummyArr);
 
-    /*
+    
     const addCardHandler = (cardArray: Flashcard[]) => {
         //setCards((previousCards) => [...previousCards, card]);
         
         setCards(() => cardArray);
 
     };
-    */
-
+    
+    /*
     const addCardHandler = (card: Flashcard) => {
         setCards((previousCards) => [...previousCards, card]);
         
         
 
-    };
+    };*/
 
     
     return (

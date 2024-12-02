@@ -4,6 +4,7 @@ import AddStudySet from '../components/AddStudySet';
 import Image from 'next/image';
 import Button from '../components/Button';
 import Delete from '../images/x-img.png';
+import { FormEvent, useState, useEffect } from 'react';
 
 // eek
 
@@ -17,6 +18,25 @@ type FlashcardProps = {
 }
 
 export default function Flashcard({flashcard}: FlashcardProps) {
+    const deleteHandler = (event: FormEvent) => {
+        event.preventDefault();
+
+        const onDeleteClick = async () => {
+            try {
+                const response = await fetch('/api/users/6743ad1daa92502baff9146f/sets/6743afd2aa92502baff91473/cards/', {
+                    method: 'DELETE',
+                });
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                //router.push('/');
+            } catch (error) {
+                console.log('Error in deleteClick');
+            }
+        }
+    }
+    
+    
     return (
         <Card>
             <div className={styles.cardCSS}>
@@ -28,7 +48,7 @@ export default function Flashcard({flashcard}: FlashcardProps) {
                     width={100} height={100}
                     priority
                 />
-                <Button className={styles.button}>
+                <Button className={styles.button} /*</div>type="submit" onClick={deleteHandler}*/>
                     <Image src={Delete} alt={"Delete card"} width={50} height={50} />
                 </Button>
         

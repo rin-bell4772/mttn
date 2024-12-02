@@ -192,6 +192,7 @@ export default function FlashcardSet() {
             <button className={styles.buttonDrop} onClick={startJazz}><p>Jazz</p></button>
             <button className={styles.buttonDrop} onClick={startCafe}><p>Cafe</p></button>
             <button className={styles.buttonDrop} onClick={startRainforest}><p>Rainforest</p></button>
+            <button className={styles.buttonDrop} onClick={startRainforest}><p>People Screaming</p></button>
           </div>
         </div>
       </div>
