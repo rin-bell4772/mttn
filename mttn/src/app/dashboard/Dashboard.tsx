@@ -13,7 +13,7 @@ export default function Dashboard() {
             <div className={styles.scroll}>
                 <AddStudySet />
                 {/* Map through favorite sets if you have a way to identify them */}
-                {setTitles.slice(0, 3).map((title, index) => (
+                {setTitles.slice(0, 4).map((title, index) => (
                     <StudySet key={index} title={title} />
                 ))}
             </div>

@@ -11,9 +11,10 @@
 .scroll {
     display: flex;
     overflow-x: auto;
-    gap: 7.5%;
+    gap: 5%;
     max-width: 100%;
     padding: 10px; 
+    box-sizing: border-box;
 }
 
 .scroll::-webkit-scrollbar {
@@ -25,4 +26,5 @@
     grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
     gap: 5%; 
     row-gap: 10%;
+    box-sizing: border-box;
 }
