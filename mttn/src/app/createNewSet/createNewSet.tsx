@@ -82,8 +82,8 @@ export default function NewFlashcards({ cards }: cardData) {
     interface CardData {
         id: number;
         term: string;
-        email: string;
-        imageUrl?: string;
+        definition: string;
+        image: string;
     }
 
     const [cardData, setCardData] = useState<CardData[]>([]);
