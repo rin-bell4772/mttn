@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
 import { StudySetProvider } from "./context/StudySetContext";
+import { SetIdProvider } from "./context/SetIdContext";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -29,7 +30,7 @@ export default function RootLayout({
     <html lang="en">
       <body className={`${geistSans.variable} ${geistMono.variable}`}>
         <SessionProvider>
-          <StudySetProvider>{children}</StudySetProvider>
+          <SetIdProvider>{children}</SetIdProvider>
         </SessionProvider>
       </body>
     </html>
