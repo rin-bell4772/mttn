@@ -7,6 +7,7 @@ import { useSession } from "next-auth/react";
 import { useState, useEffect } from 'react';
 
 interface StudySet {
+    id: string;
     name: string;
 }
 
@@ -45,7 +46,7 @@ export default function Dashboard() {
             <div className={styles.grid}>
                 <AddStudySet />
                 {studySets.map((set, index) => (
-                    <StudySet key={index} title={set.name} />
+                    <StudySet key={index} id={set.id} title={set.name} />
                 ))}
             </div>
         </div>
