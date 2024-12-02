@@ -9,6 +9,7 @@ import { useRouter } from 'next/navigation';
 import Card from '../components/Card';
 import { create } from 'domain';
 //import { useRouter } from 'next/router';
+import { useSession } from 'next-auth/react';
 
 type Cards = {
     id: number;
@@ -24,6 +25,8 @@ type AddCardProps = {
 
 
 export default function AddStudySet({onAddCard}: AddCardProps) {
+    const {data: session} = useSession();
+
     const [term, setTerm] = useState<string>('');
     const [definition, setDefinition] = useState<string>('');
     const [image, setImageUrl] = useState<string>('');
@@ -67,165 +70,18 @@ export default function AddStudySet({onAddCard}: AddCardProps) {
                 console.error('Error in CreateItem!', error);
             }
         }
-        createNewFlashcard(newCard);
         
+        createNewFlashcard(newCard);        
 
-
-        //const [items, setItems] = useState([]);
-        
-        /*useEffect(() => {
-            const fetchCards = async () => {
-                try {
-                    const response = await fetch ('api/users/6743ad1daa92502baff9146f/sets/6743afd2aa92502baff91473/cards');
-                    if (!response.ok) {
-                        throw new Error('Network response was not ok');
-                    }
-                    const data = await response.json();
-                    const itemData = data.card;
-                    /*setItem({
-                        term: itemData.term || '',
-                        definition: itemData.definition || '',
-                        imageUrl: itemData.imageUrl || '',
-                    });
-                    *//*
-                   setTerm(itemData.term);
-                   setDefinition(itemData.definition);
-                   setImageUrl(itemData.imageUrl);
-
-                } catch (error) {
-                    console.log('Error from UpdateItemInfo');
-                }
-            }
-        })*/
-       /*
-        function getCards() {
-
-            
-            const [items, setItems] = useState([]);
-            useEffect(() => {
-                const fetchItems = async () => {
-                    try {
-                        const response = await fetch ('api/users/6743ad1daa92502baff9146f/sets/6743afd2aa92502baff91473/cards');
-                        if (!response.ok) {
-                            throw new Error('Network response was not ok');
-                        }
-                        const cardjson = await response.json();
-                        const cardData = cardjson.cards;
-                        //setItems(cardjson.cards);
-                        setTerm(cardData.term);
-                        setDefinition(cardData.definition);
-                        setImageUrl(cardData.imageUrl);
-                    } catch (error) {
-                        console.log('Error from ShowItemList: ', error);
-                    }
-                };
-                fetchItems();
-            }, []);
-        }
-        //const 
-        
-
-        /*const fetchCards = async (userId: string, setId:string) => {
-            try {
-                const response = await fetch ('api/users/6743ad1daa92502baff9146f/sets/6743afd2aa92502baff91473/cards');
-                if (!response.ok) {
-                    throw new Error('Network response was not ok');
-                }
-                const cardjson = await response.json();
-                return cardjson;
-            } catch(error) {
-                console.log('Error from ShowItemList: ', error);
-                return null;
-            }
-        }*/
-        
-        
-        //fetchCards('6743ad1daa92502baff9146f', '6743afd2aa92502baff91473');
-        
-
-  /*      async function getCards() {
-            //const [items, setItems] = useState([]);
-
-            useEffect(() => {
-                const fetchItems = async () => {
-                    try {
-
-                        const response = await fetch('api/users/6743ad1daa92502baff9146f/sets/6743afd2aa92502baff91473/cards');
-                        if (!response.ok) {
-                            throw new Error('Network response was not ok');
-                        }
-                        const data = await response.json();
-                        
-                        setItems(data.items);
-                        //onAddCard(data.items);
-                        console.log(items);
-                        
-                    } catch (error) {
-                        console.log('Error from ShowItemList: ', error);
-                    }
-                };
-                fetchItems();
-            }, []);
-        }
-        console.log(items);*/
-        
-     //console.log(getCards());
-        /*
-        const [items, setItems] = useState([]);
-
-        useEffect(() => {
-            const fetchItems = async () => {
-                try {
-                    const response = await fetch('api/users/6743ad1daa92502baff9146f/sets/6743afd2aa92502baff91473/cards');
-                    if (!response.ok) {
-                        throw new Error('Network response was not ok');
-                    }
-                    const data = await response.json();
-                    
-                    setItems(data.items);
-                    //onAddCard(data.items);
-                } catch (error) {
-                    console.log('Error from ShowItemList: ', error);
-                }
-            };
-            fetchItems();
-        }, []);
-
-        //onAddCard(items);
-        */
         //onAddCard(newCard);
         
         setTerm('');
         setDefinition('');
         setImageUrl('');
     };
-    /*
-    function getCards() {
+    
 
-            
-        const [items, setItems] = useState([]);
-        useEffect(() => {
-            const fetchItems = async () => {
-                try {
-                    const response = await fetch ('api/users/6743ad1daa92502baff9146f/sets/6743afd2aa92502baff91473/cards');
-                    if (!response.ok) {
-                        throw new Error('Network response was not ok');
-                    }
-                    const cardjson = await response.json();
-                    const cardData = cardjson.cards;
-                    //setItems(cardjson.cards);
-                    setTerm(cardData.term);
-                    setDefinition(cardData.definition);
-                    setImageUrl(cardData.imageUrl);
-                } catch (error) {
-                    console.log('Error from ShowItemList: ', error);
-                }
-            };
-            fetchItems();
-        }, []);
-    }
-    getCards();
-    */
+    // GET REQUEST
     interface CardData {
         term: string;
         email: string;
@@ -240,17 +96,32 @@ export default function AddStudySet({onAddCard}: AddCardProps) {
                 throw new Error('Network response was not ok');
             }
             const cardjson = await response.json();
-            return cardjson;
+            const data = cardjson.cards;
+            //const data = JSON.parse(cardjson);
+            //return cardjson;
+            return data;
         } catch(error) {
             console.log('Error from ShowItemList: ', error);
             return null;
         }
     }
-    console.log(fetchCards("6743ad1daa92502baff9146f", "6743afd2aa92502baff91473"));
-
-    return (
+    useEffect(() => {
+        if (session?.user?.id) {
+            fetchCards("6743ad1daa92502baff9146f", "6743afd2aa92502baff91473").then((data) => {
+                setCardData(data);
+                
+            });
+        }
         
+    }, [session]);
+    console.log(cardData);
+    //console.log(cardArr);
+    //console.log(fetchCards("6743ad1daa92502baff9146f", "6743afd2aa92502baff91473"));
+    
+    return (
+       
         <div className={styles.addFlashcard}> 
+            
            <Card>
                 <form onSubmit={submitHandler}>
                     <input className={styles.information}
