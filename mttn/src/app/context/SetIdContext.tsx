@@ -2,9 +2,9 @@
 import { createContext, useContext, useState, ReactNode } from 'react';
 
 type SetIdContextType = {
-    setTitle: string | null;
+    title: string | null;
     setId: string | null;
-    updateSetTitle: (newTitles: string) => void;
+    updateTitle: (newTitles: string) => void;
     updateSetId: (newId: string) => void;
 };
 
@@ -23,11 +23,11 @@ type SetIdProviderProps = {
 };
 
 export const SetIdProvider = ({ children }: SetIdProviderProps) => {
-    const [setTitle, setSetTitle] = useState<string | null>(null);
+    const [title, setTitle] = useState<string | null>(null);
     const [setId, setSetId] = useState<string | null>(null);
 
-    const updateSetTitle = (newTitle: string) => {
-        setSetTitle(newTitle);
+    const updateTitle = (newTitle: string) => {
+        setTitle(newTitle);
     };
 
     const updateSetId = (newId: string) => {
@@ -35,7 +35,7 @@ export const SetIdProvider = ({ children }: SetIdProviderProps) => {
     };
 
     return (
-        <SetIdContext.Provider value={{ setTitle, setId, updateSetTitle, updateSetId }}>
+        <SetIdContext.Provider value={{ title, setId, updateTitle, updateSetId }}>
             {children}
         </SetIdContext.Provider>
     );

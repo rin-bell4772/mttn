@@ -17,7 +17,7 @@ export default function AddStudySet(props: StudySetProps) {
     const [title, setTitle] = useState("Untitled");
     const { data: session } = useSession();
     const userId = session?.user?.id;
-    const { setId, updateSetId } = useSetId();
+    const { setId, updateSetId, updateTitle } = useSetId();
     const router = useRouter();
 
     const handleClick = async () => {
@@ -35,9 +35,10 @@ export default function AddStudySet(props: StudySetProps) {
             const newSet = await createSet(userId, title); 
             if (newSet) {
                 console.log("New set saved:", newSet);
-                setTitle("Untitled"); 
-                console.log("Set ID from createSet:", newSet.set._id);
+                updateTitle(title);
+                setTitle(title);
                 updateSetId(newSet.set._id);
+                console.log("Set ID from createSet:", newSet.set._id);
                 router.push('/createNewSet');
             }
         } catch (error) {

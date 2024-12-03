@@ -22,34 +22,49 @@ type cardData = {
 };
 
 export default function NewFlashcards({ cards }: cardData, props: Flashcards) {
-    const [title, setTitle] = useState("Animals");
     // const { setTitles, updateSetTitles } = useStudySet();
     const { data: session } = useSession();
+    console.log('Session object:', session);
     const userId = session?.user?.id;
-    const { setId } = useSetId();
+    const { setId, title, updateTitle } = useSetId();
+    console.log("setId in createNewSet:", setId);
     const [cardData, setCardData] = useState<CardData[]>([]);
 
     // Changes title of study set (keep this)
     const handleTitleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        setTitle(e.target.value);
+        updateTitle(e.target.value);
+        console.log("Updated title:", e.target.value);
     };
-
+    
     // PUT REQUEST FOR SETS
     const handleSave = async () => {
         try {
-            console.log(props.id);
-            const response = await fetch(`/api/users/${userId}/sets/${props.id}`, {
+            if (!userId) {
+                console.error('User ID is not available. Check session.');
+                return;
+            }
+            if (!setId) {
+                console.error("Set ID is not defined");
+                return;
+            }
+            const response = await fetch(`/api/users/${userId}/sets/${setId}`, {
                 method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json',
                 },
-                body: JSON.stringify(title),
+                body: JSON.stringify({ name: title }),
+                
             });
+            console.log("title in handleSave: '", title);
             return await response.json();
         } catch (error) {
             console.error("Error in handleSave: ", error);
         }
     };
+
+    useEffect(() => {
+        console.log("Title updated to:", title);
+    }, [title]);
 
     // GET REQUEST
     interface CardData {
@@ -83,26 +98,24 @@ export default function NewFlashcards({ cards }: cardData, props: Flashcards) {
     }
 
     useEffect(() => { 
-        if(setId) {
+        if (setId) {
             fetchCards()
         }
-    }, [userId]);
+    }, [userId, setId]);
 
     return (
         <div>
             <div className={styles.header}>
                 <input
                     type="text"
-                    value={title}
+                    value={ title || '' }
                     onChange={handleTitleChange}
                     className={styles.titleInput}
                     placeholder="Enter a title"
                 />
-                <Link href="./flashcardSet">
-                    <Button className={styles.button} type="button" onClick={handleSave}>
-                        Save
-                    </Button>
-                </Link>
+                <Button className={styles.button} type="button" onClick={handleSave}>
+                    Save
+                </Button>
             </div>
 
             <div>
