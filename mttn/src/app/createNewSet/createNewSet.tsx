@@ -60,13 +60,14 @@ export default function NewFlashcards({ cards }: cardData, props: Flashcards) {
     }
 
     const fetchCards = async () => {
-        if (!userId || !setId) {
-            console.error("User ID or Set ID is not available");
-            return;
-        }
+        // if (!userId || !setId) {
+        //     console.error("User ID or Set ID is not available");
+        //     return;
+        // }
 
         try {
-            const response = await fetch (`api/users/${userId}/sets/${setId}/cards`);
+            console.log("props id", props.id);
+            const response = await fetch (`api/users/${userId}/sets/${props.id}/cards`);
             
             if (!response.ok) {
                 throw new Error('Network response was not ok');
@@ -85,7 +86,7 @@ export default function NewFlashcards({ cards }: cardData, props: Flashcards) {
         if(setId) {
             fetchCards()
         }
-    }, [userId, setId]);
+    }, [userId]);
 
     return (
         <div>
