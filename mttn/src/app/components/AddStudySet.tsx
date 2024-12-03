@@ -43,8 +43,6 @@ export default function AddStudySet(props: StudySetProps) {
 
         updateSetId(props.id);
         router.push('/createNewSet');
-        console.log("title: ", title);
-        console.log("setId: ", setId);
     };
 
     const createSet = async (userId: string, title: string) => {

@@ -33,8 +33,21 @@ export default function NewFlashcards({ cards }: cardData, props: Flashcards) {
         setTitle(e.target.value);
     };
 
+    // PUT REQUEST FOR SETS
     const handleSave = async () => {
-        // PUT REQUEST
+        try {
+            console.log(props.id);
+            const response = await fetch(`/api/users/${userId}/sets/${props.id}`, {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(title),
+            });
+            return await response.json();
+        } catch (error) {
+            console.error("Error in handleSave: ", error);
+        }
     };
 
     // GET REQUEST
