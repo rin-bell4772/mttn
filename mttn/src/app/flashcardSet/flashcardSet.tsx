@@ -24,6 +24,10 @@ type Flashcards = {
   image: string;
 };
 
+type cardData = {
+  cards: Flashcards[];
+}
+
 /*const dummyArr: Flashcards[] = [
   {
     id: 1,
@@ -134,16 +138,30 @@ export default function FlashcardSet() {
       }
     };
     */
-    const [items, setItems] = useState([]);
+    interface CardData {
+      id: string;
+      term: string;
+      definition: string;
+      image: string;
+    }
+    const [cardData, setCardData] = useState<CardData[]>([]);
     //useEffect(() => {
       const fetchCards = async () => {
+
         try {
+          if (!userId) {
+            console.log('User ID is not available');
+            return;
+          }
+
           const response = await fetch(`/api/users/${userId}/sets/${setId}/cards`);
+          
           if(!response.ok) {
             throw new Error('Network response was not ok');
           }
+
           const data = await response.json();
-          setItems(data.items);
+          setCardData(data.cards);
 
         } catch (error) {
           console.log('Error from ShowItemList:', error);
@@ -151,12 +169,12 @@ export default function FlashcardSet() {
       };
     //},);
     useEffect(() => {fetchCards}, []);
-    
+    console.log(cardData);
 
-    if (userId && setId) {
+    /*if (userId && setId) {
       fetchCards(); // fetch cards only if userId and setId are available
-    }
-  //}, [userId, setId]);
+    }*/
+  
 
   const shuffleCards = () => {
     const shuffled = [...cards].sort(() => Math.random() - 0.5);
@@ -183,7 +201,7 @@ export default function FlashcardSet() {
     }
   };
 
-  const currentCard = cards[currentIndex];
+  const currentCard = cardData[currentIndex];//cards[currentIndex];
 
   return (
     <div className={styles.flashcardPage}>
@@ -210,6 +228,7 @@ export default function FlashcardSet() {
           <div className={styles.termDef}>
             {isFlipped ? (
                 <div>
+                    
                     <p>{currentCard.definition}</p>
                     <Image src={currentCard.image} alt="image" width={50} height={50}/>
                 </div>
