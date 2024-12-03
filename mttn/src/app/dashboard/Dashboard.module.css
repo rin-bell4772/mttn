@@ -1,5 +1,6 @@
 .dashboard {
     margin: 3%;
+    min-height: 500px;
 }
 
 .dashboard > h1 {
