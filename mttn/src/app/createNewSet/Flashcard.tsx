@@ -10,15 +10,15 @@ import { useSetId } from '../context/SetIdContext';
 
 // eek
 
-/*type FlashcardProps = {
+type FlashcardProps = {
     flashcard: {
         id: string;
         term: string;
         definition: string;
         image: string;
     }
-}*/
-
+}
+/*
 interface FlashcardProps {
     id: string;
     term: string;
@@ -26,58 +26,8 @@ interface FlashcardProps {
     image: string;
     onDelete: () => void;
 }
-
-export default function Flashcard(flashcard: FlashcardProps) {
-    const {data: session} = useSession();
-    const {setId, updateSetId } = useSetId();
-    const userId = session?.user?.id;
-
-    /*
-    const deleteHandler = async () => {
-        try {
-            const response = await fetch(`/api/users/${userId}/sets/${setId}/cards/`, {
-                method: 'DELETE',
-            });
-
-            if (!response.body) {
-                throw new Error('Network response was not ok...');
-            }
-
-            flashcard.onDelete();
-
-        } catch (error) {
-            console.log('Error in handleDelete: ', error);
-        }
-    };
-
-    const handleClick = () => {
-        
-    }
-    /*
-    const deleteHandler = (event: FormEvent) => {
-        event.preventDefault();
-        
-        const onDeleteClick = async () => {
-            try {
-                const response = await fetch(`/api/users/${userId}/sets/674be216fa52ad698391058b/cards/674be216fa52ad698391058b`, {
-                    method: 'DELETE',
-                });
-                if (!response.ok) {
-                    throw new Error('Network response was not ok');
-                }
-                //router.push('/');
-            } catch (error) {
-                console.log('Error in deleteClick');
-            }
-        }
-
-    }*/
-    /*const deleteHandler = async () => {
-        try {
-            const response = await fetch(`/api/users/${userId}/sets/${flashcard.id}`)
-        }
-    };*/
-    
+*/
+export default function Flashcard({flashcard}: FlashcardProps) {    
     
     return (
         <Card>

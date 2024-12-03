@@ -11,7 +11,7 @@ import { useSession } from "next-auth/react";
 import { useSetId } from '../context/SetIdContext';
 
 type Flashcards = {
-    id: number;
+    id: string;
     term: string;
     definition: string;
     image: string;
@@ -67,7 +67,7 @@ export default function NewFlashcards({ cards }: cardData, props: Flashcards) {
 
     // GET REQUEST
     interface CardData {
-        id: number;
+        id: string;
         term: string;
         definition: string;
         image: string;
@@ -101,6 +101,15 @@ export default function NewFlashcards({ cards }: cardData, props: Flashcards) {
             fetchCards()
         }
     }, [userId, setId]);
+    
+
+    const addCardHandler = (cardArray: Flashcards[]) => {
+        //setCards((previousCards) => [...previousCards, card]);
+        //console.log("HIASKDFJSLFLSJFI");
+        setCardData(() => cardArray);
+
+    };
+    
 
     return (
         <div>
@@ -122,6 +131,7 @@ export default function NewFlashcards({ cards }: cardData, props: Flashcards) {
                 {cardData.map((card, index) => (
                     <Flashcard key={index} flashcard={card} />
                 ))}
+                <AddFlashcard onAddCard={addCardHandler}/>
             </div>
         </div>
     );
