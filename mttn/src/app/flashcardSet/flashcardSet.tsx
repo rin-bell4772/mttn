@@ -70,10 +70,9 @@ export default function FlashcardSet() {
         setLoading(false);
         return; // Exit early if IDs are not available
       }
-      //674e76acaef5be9f17fca800
+
       try {
         const response = await fetch(`/api/users/${userId}/sets/${setId}/cards`, {
-          //const response = await fetch(`/api/users/674be0c8005ed68c9b5cc28d/sets/674e76acaef5be9f17fca800/cards`, {
           method: "GET",
         });
 
@@ -99,7 +98,7 @@ export default function FlashcardSet() {
   const [cafe, setCafe] = useState<HTMLAudioElement | null>(null);
   const [rainforest, setRainforest] = useState<HTMLAudioElement | null>(null);
   const [currentAudio, setCurrentAudio] = useState<HTMLAudioElement | null>(null);
- 
+
   useEffect(() => {
     setJazz(new Audio('/audios/jazz.mp3'));
     setCafe(new Audio('/audios/restaurantsounds.mp3'));
@@ -157,7 +156,7 @@ export default function FlashcardSet() {
     }
   };
 
-  const currentCard = cards[currentIndex];
+  const currentCard = cards[currentIndex] || null;
 
   return (
     <div className={styles.flashcardPage}>
@@ -188,14 +187,23 @@ export default function FlashcardSet() {
               </div>
               <div className={styles.termDef}>
                 {isFlipped ? (
-                  <>
-                    <p>{currentCard.definition}</p>
-                    {currentCard.image && (
-                      <Image src={currentCard.image} alt="Image for Definition" width={50} height={50} />
-                    )}
-                  </>
+                  currentCard ? (
+                    <>
+                      <p>{currentCard.definition}</p>
+                      {currentCard.image && (
+                        <Image
+                          src={currentCard.image}
+                          alt="Image for Definition"
+                          width={50}
+                          height={50}
+                        />
+                      )}
+                    </>
+                  ) : (
+                    <p>No card available</p>
+                  )
                 ) : (
-                  <p>{currentCard.term}</p>
+                  currentCard ? <p>{currentCard.term}</p> : <p>No card available</p>
                 )}
               </div>
               <div className={styles.turnArrow}>

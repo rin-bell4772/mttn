@@ -15,7 +15,7 @@ import {useSetId} from '../context/SetIdContext';
 
 
 type Cards = { 
-    id: number;
+    id: string;
     term: string;
     definition: string;
     image: string;
@@ -30,7 +30,9 @@ type AddCardProps = {
 export default function AddStudySet({onAddCard}: AddCardProps) {
     const {data: session} = useSession();
     const userId = session?.user?.id;
+    const {setId, updateSetId} = useSetId();
 
+    
     const [term, setTerm] = useState<string>('');
     const [definition, setDefinition] = useState<string>('');
     const [image, setImageUrl] = useState<string>('');
@@ -40,12 +42,30 @@ export default function AddStudySet({onAddCard}: AddCardProps) {
         term: string;
         definition: string;
         image: string;
+        onAdding: () => void;
     }
     const [cardData, setCardData] = useState<CardData[]>([]);
 
+    const fetchCards = async () => {
+        try {
+            const response = await fetch (`api/users/${userId}/sets/${setId}/cards`);
+            
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            
+            const data = await response.json();
+            setCardData(data.cards);
+        
+        } catch(error) {
+            console.error("Error fetching cards: ", error);
+        }
+        
+    }
+    useEffect(() => {fetchCards}, []);
     
 
-    const submitHandler = (event: FormEvent, props: CardData) => {
+    const submitHandler = (event: FormEvent) => {
         event.preventDefault();
 
         if (!term || !definition) {
@@ -53,15 +73,15 @@ export default function AddStudySet({onAddCard}: AddCardProps) {
             return;
         }
 
-        // replace with POST request
+        
         const newCard: Cards = {
-            id: Math.random(),
+            id: Math.random().toString(),
             term,
             definition,
             image,
         };
         
-        
+        // POST REQUEST
         async function createNewFlashcard(data: {term: string, definition: string, image: string}) {
             try {
                 if (!userId) {
@@ -69,8 +89,7 @@ export default function AddStudySet({onAddCard}: AddCardProps) {
                     return;
                 }
 
-
-                const response = await fetch(`/api/users/${userId}/sets/674be216fa52ad698391058b/cards`, {
+                const response = await fetch(`/api/users/${userId}/sets/${setId}/cards`, {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
@@ -88,38 +107,16 @@ export default function AddStudySet({onAddCard}: AddCardProps) {
             } catch (error) {
                 console.error('Error in CreateItem!', error);
             }
-        }
+        };
         
-        createNewFlashcard(newCard);  
+        createNewFlashcard(newCard);
         
-        //useEffect(() => {
-            const fetchCards = async () => {
-                try {
-                    const response = await fetch (`api/users/${userId}/sets/674be216fa52ad698391058b/cards`);
-                    
-                    if (!response.ok) {
-                        throw new Error('Network response was not ok');
-                    }
-                    
-                    const data = await response.json();
-                    setCardData(data.cards);
-                
-                } catch(error) {
-                    console.error("Error fetching cards: ", error);
-                }
-                
-            }
-            fetchCards();
-        //}, []);  
-        //createNewFlashcard(newCard);  
-        useEffect(() => {fetchCards}, []);
-        //onAddCard(newCard);
-        
+        //onAddCard();
+
         setTerm('');
         setDefinition('');
         setImageUrl('');
 
-        
 
     };
     
