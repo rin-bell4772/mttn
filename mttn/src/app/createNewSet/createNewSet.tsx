@@ -137,7 +137,7 @@ export default function NewFlashcards({ cards }: cardData) {
                 {cardData.map((card, index) => (
                     <Flashcard key={index} flashcard={card} />
                 ))}
-                <AddFlashcard onAddCard={addCardHandler}/>
+                <AddFlashcard onAddCard={fetchCards}/>{/*addCardHandler}/>*/}
             </div>
         </div>
     );

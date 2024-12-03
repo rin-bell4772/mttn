@@ -42,7 +42,7 @@ export default function AddStudySet({onAddCard}: AddCardProps) {
         term: string;
         definition: string;
         image: string;
-        onAdding: () => void;
+        //onAdding: () => void;
     }
     const [cardData, setCardData] = useState<CardData[]>([]);
 
@@ -98,11 +98,13 @@ export default function AddStudySet({onAddCard}: AddCardProps) {
                 });
 
                 if (!response.ok) {throw new Error('ERROR');}
+                
 
                 setTerm('');
                 setDefinition('');
                 setImageUrl('');
 
+                onAddCard(cardData);
                 //router.push('/');
             } catch (error) {
                 console.error('Error in CreateItem!', error);
