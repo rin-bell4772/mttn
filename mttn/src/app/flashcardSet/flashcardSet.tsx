@@ -70,9 +70,10 @@ export default function FlashcardSet() {
         setLoading(false);
         return; // Exit early if IDs are not available
       }
-
+      //674e76acaef5be9f17fca800
       try {
         const response = await fetch(`/api/users/${userId}/sets/${setId}/cards`, {
+          //const response = await fetch(`/api/users/674be0c8005ed68c9b5cc28d/sets/674e76acaef5be9f17fca800/cards`, {
           method: "GET",
         });
 

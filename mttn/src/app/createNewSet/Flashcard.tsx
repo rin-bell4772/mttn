@@ -7,23 +7,52 @@ import Delete from '../images/x-img.png';
 import { FormEvent, useState, useEffect } from 'react';
 import { useSession } from 'next-auth/react';
 import { useSetId } from '../context/SetIdContext';
+
 // eek
 
-type FlashcardProps = {
+/*type FlashcardProps = {
     flashcard: {
-        id: number;
+        id: string;
         term: string;
         definition: string;
         image: string;
     }
+}*/
+
+interface FlashcardProps {
+    id: string;
+    term: string;
+    definition: string;
+    image: string;
+    onDelete: () => void;
 }
 
-export default function Flashcard({flashcard}: FlashcardProps) {
+export default function Flashcard(flashcard: FlashcardProps) {
     const {data: session} = useSession();
     const {setId, updateSetId } = useSetId();
-    //const {cardId, updateCardId}
     const userId = session?.user?.id;
 
+    /*
+    const deleteHandler = async () => {
+        try {
+            const response = await fetch(`/api/users/${userId}/sets/${setId}/cards/`, {
+                method: 'DELETE',
+            });
+
+            if (!response.body) {
+                throw new Error('Network response was not ok...');
+            }
+
+            flashcard.onDelete();
+
+        } catch (error) {
+            console.log('Error in handleDelete: ', error);
+        }
+    };
+
+    const handleClick = () => {
+        
+    }
     /*
     const deleteHandler = (event: FormEvent) => {
         event.preventDefault();
@@ -61,10 +90,10 @@ export default function Flashcard({flashcard}: FlashcardProps) {
                     width={100} height={100}
                     priority
                 />
-                <Button className={styles.button} /*</div>type="submit" onClick={deleteHandler}*/>
+                
+                {/*<Button className={styles.button} /*</div>type="submit" onClick={deleteHandler}>*
                     <Image src={Delete} alt={"Delete card"} width={50} height={50} />
-                </Button>
-        
+                </Button>*/}
             </div>
         </Card>
 
