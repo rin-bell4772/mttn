@@ -11,7 +11,6 @@ import { useState } from 'react';
 interface StudySetProps {
     title: string;
     id: string;
-    onDelete: () => void;
 }
 
 export default function AddStudySet(props: StudySetProps) {
@@ -43,8 +42,9 @@ export default function AddStudySet(props: StudySetProps) {
         }
 
         updateSetId(props.id);
-        console.log("setId: ", setId);
         router.push('/createNewSet');
+        console.log("title: ", title);
+        console.log("setId: ", setId);
     };
 
     const createSet = async (userId: string, title: string) => {

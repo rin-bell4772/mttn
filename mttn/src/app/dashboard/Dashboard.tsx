@@ -45,7 +45,7 @@ export default function Dashboard() {
         <div className={styles.dashboard}>
             <h1>ALL</h1>
             <div className={styles.grid}>
-                <AddStudySet />
+                <AddStudySet title={"Untitled"} id={"someId"}/>
                 {studySets.map((set, index) => (
                     <StudySet key={index} id={set._id} title={set.name} onDelete={fetchStudySets} />
                 ))}
