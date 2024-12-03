@@ -16,9 +16,13 @@ export async function doCredentialLogin(formData: FormData): Promise<any> {
             password,
             redirect: false
         });
-        console.log(response);
-        return response;
+
+        if (response?.error) {
+            return { success: false, message: response.error };
+        }
+
+        return { success: true, data: response };
     } catch (error) {
-        return error;
+        return { success: false, message: "An error occurred during login" };
     }
 }

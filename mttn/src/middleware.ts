@@ -20,6 +20,7 @@ export default async function middleware(request: any) {
 // middleware automatically applied
 export const config = {
     matcher: [
+        "/login",
         "/dashboard",
         "/flashcardSet",
         "/settings",

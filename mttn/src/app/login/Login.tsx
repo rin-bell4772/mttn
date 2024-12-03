@@ -27,12 +27,10 @@ export const Login = () => {
 
     try {
       const response = await doCredentialLogin(formData);
-      if (response) {
+      if (response.success) {
         console.log('doCredLoginResponse', response);
         router.push('/dashboard');
-        
       } else {
-        alert('Invalid email or password');
         setErrorMessage('Invalid email or password');
       }
     } catch (err) {
