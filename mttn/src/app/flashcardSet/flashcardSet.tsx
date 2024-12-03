@@ -13,6 +13,9 @@ import shuffleSet from '../images/shuffleSet.png';
 import Link from 'next/link';
 import Button from '../components/Button';
 import Timer from '../components/Timer';
+//import { useRouter } from 'next/navigation';
+import {useSession} from "next-auth/react";
+import {useSetId} from '../context/SetIdContext';
 
 type Flashcards = {
   id: number;
@@ -21,7 +24,7 @@ type Flashcards = {
   image: string;
 };
 
-const dummyArr: Flashcards[] = [
+/*const dummyArr: Flashcards[] = [
   {
     id: 1,
     term: "Red Panda",
@@ -47,6 +50,7 @@ const dummyArr: Flashcards[] = [
     image: "https://denettefretz.com/wp-content/uploads/2018/07/Andy2.png",
   },
 ];
+*/
 
 export default function FlashcardSet() {
 
@@ -98,9 +102,61 @@ export default function FlashcardSet() {
     playAudio(rainforest);
   };
 
-  const [cards, setCards] = useState<Flashcards[]>(dummyArr); // Cards array
+  const [cards, setCards] = useState<Flashcards[]>([]); // Cards array
   const [currentIndex, setCurrentIndex] = useState(0); // Index of the current card
   const [isFlipped, setIsFlipped] = useState(false); // Flip state
+  const [loading, setLoading] = useState(true) // loading state for fetching data
+
+  //const router = useRouter();
+  //const userId = router.query.userId; // extract userId from the route, if it's available
+  //const setId = router.query.setId; // extract setId from the route, if it's available
+  const {data: session} = useSession();
+  const userId = session?.user?.id;
+  const { setId, updateSetId } = useSetId();
+
+
+  // eetch cards when the component mounts
+  /*useEffect(() => {
+    const fetchCards = async () => {
+      try {
+        const response = await fetch(`/api/users/${userId}/sets/${setId}/cards`, {
+          method: "GET",
+        });
+        if (!response.ok) {
+          throw new Error("Failed to fetch cards");
+        }
+        const data = await response.json();
+        setCards(data.cards);
+      } catch (error) {
+        console.error("Error fetching cards:", error);
+      } finally {
+        setLoading(false);
+      }
+    };
+    */
+    const [items, setItems] = useState([]);
+    //useEffect(() => {
+      const fetchCards = async () => {
+        try {
+          const response = await fetch(`/api/users/${userId}/sets/${setId}/cards`);
+          if(!response.ok) {
+            throw new Error('Network response was not ok');
+          }
+          const data = await response.json();
+          setItems(data.items);
+
+        } catch (error) {
+          console.log('Error from ShowItemList:', error);
+        }
+      };
+    //},);
+    useEffect(() => {fetchCards}, []);
+    
+
+    if (userId && setId) {
+      fetchCards(); // fetch cards only if userId and setId are available
+    }
+  //}, [userId, setId]);
 
   const shuffleCards = () => {
     const shuffled = [...cards].sort(() => Math.random() - 0.5);
