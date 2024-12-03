@@ -59,9 +59,6 @@ export default function NewFlashcards({ cards }: cardData, props: Flashcards) {
         image: string;
     }
 
-
-
-
     const fetchCards = async () => {
         if (!userId || !setId) {
             console.error("User ID or Set ID is not available");
