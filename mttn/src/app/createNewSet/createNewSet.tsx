@@ -26,7 +26,8 @@ export default function NewFlashcards({ cards }: cardData, props: Flashcards) {
     // const { setTitles, updateSetTitles } = useStudySet();
     const { data: session } = useSession();
     const userId = session?.user?.id;
-    const { setId, updateSetId } = useSetId();
+    const { setId } = useSetId();
+    const [cardData, setCardData] = useState<CardData[]>([]);
 
     // Changes title of study set (keep this)
     const handleTitleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -58,28 +59,33 @@ export default function NewFlashcards({ cards }: cardData, props: Flashcards) {
         image: string;
     }
 
-    const [cardData, setCardData] = useState<CardData[]>([]);
+    const fetchCards = async () => {
+        if (!userId || !setId) {
+            console.error("User ID or Set ID is not available");
+            return;
+        }
 
-    //useEffect(() => {
-        const fetchCards = async () => {
-            try {
-                const response = await fetch (`api/users/${userId}/sets/${setId}/cards`);
-                
-                if (!response.ok) {
-                    throw new Error('Network response was not ok');
-                }
-                
-                const data = await response.json();
-                setCardData(data.cards);
+        try {
+            const response = await fetch (`api/users/${userId}/sets/${setId}/cards`);
             
-            } catch(error) {
-                console.error("Error fetching cards: ", error);
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
             }
             
+            const data = await response.json();
+            setCardData(data.cards);
+        
+        } catch(error) {
+            console.error("Error fetching cards: ", error);
         }
-        fetchCards();
-    //}, []);
-    useEffect(() => {fetchCards()}, []);
+        
+    }
+
+    useEffect(() => { 
+        if(setId) {
+            fetchCards()
+        }
+    }, [userId, setId]);
 
     return (
         <div>
