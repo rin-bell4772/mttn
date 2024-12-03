@@ -32,6 +32,7 @@ export const Login = () => {
         router.push('/dashboard');
         
       } else {
+        alert('Invalid email or password');
         setErrorMessage('Invalid email or password');
       }
     } catch (err) {
