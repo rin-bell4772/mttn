@@ -33,52 +33,9 @@ export default function NewFlashcards({ cards }: cardData, props: Flashcards) {
         setTitle(e.target.value);
     };
 
-    // Whenever you hit 'Save', you take the title & create a set (modify name with title)
     const handleSave = async () => {
-
-        if (!userId) {
-            console.error("User ID is not available");
-            return;
-        }
-    
-        if (!title.trim()) {
-            console.error("Title cannot be empty");
-            return;
-        }
-
-        try {
-            const newSet = await createSet(userId, title); 
-            if (newSet) {
-                console.log("New set saved:", newSet);
-                setTitle(""); 
-            }
-        } catch (error) {
-            console.error("Error handling save:", error);
-        }
+        // PUT REQUEST
     };
-
-    // POST request for dashboard
-    const createSet = async (userId: string, title: string) => {
-
-        try {
-            const response = await fetch(`api/users/${userId}/sets`, {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ name: title }),
-            });
-
-            if (!response.ok) {
-                throw new Error(`HTTP error! Status: ${response.status}`);
-            }
-
-            const data = await response.json();
-            console.log("Set created successfully:", data);
-            return data;
-        } catch (error) {
-            console.error('Create set error:', error);
-        }
-
-    }
 
     // GET REQUEST
     interface CardData {
