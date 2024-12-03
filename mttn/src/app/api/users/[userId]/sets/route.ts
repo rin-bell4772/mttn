@@ -42,7 +42,7 @@ export async function POST(request: NextRequest, { params }: RouteParams) {
         if (user) {
             user.sets.push(newSet._id as unknown as ISet);
             await user.save();
-            return NextResponse.json({ message: "Set created successfully" }, { status: 201 });
+            return NextResponse.json({ set: newSet }, { status: 201 });
         } else {
             return NextResponse.json({ message: "User not found" }, { status: 404 });
         }
