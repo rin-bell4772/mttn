@@ -111,7 +111,7 @@ export default function AddStudySet({onAddCard}: AddCardProps) {
         
         createNewFlashcard(newCard);
         
-        //onAddCard();
+        //onAddCard(cardData);
 
         setTerm('');
         setDefinition('');

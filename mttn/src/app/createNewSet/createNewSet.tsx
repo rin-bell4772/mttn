@@ -21,7 +21,7 @@ type cardData = {
     cards: Flashcards[];
 };
 
-export default function NewFlashcards({ cards }: cardData, props: Flashcards) {
+export default function NewFlashcards({ cards }: cardData) {
     // const { setTitles, updateSetTitles } = useStudySet();
     const { data: session } = useSession();
     console.log('Session object:', session);
@@ -80,8 +80,8 @@ export default function NewFlashcards({ cards }: cardData, props: Flashcards) {
         // }
 
         try {
-            console.log("props id", props.id);
-            const response = await fetch (`api/users/${userId}/sets/${props.id}/cards`);
+            //console.log("props id", props.id);
+            const response = await fetch (`api/users/${userId}/sets/${setId}/cards`);
             
             if (!response.ok) {
                 throw new Error('Network response was not ok');
@@ -89,6 +89,7 @@ export default function NewFlashcards({ cards }: cardData, props: Flashcards) {
             
             const data = await response.json();
             setCardData(data.cards);
+            //console.log(data);
         
         } catch(error) {
             console.error("Error fetching cards: ", error);
@@ -96,11 +97,16 @@ export default function NewFlashcards({ cards }: cardData, props: Flashcards) {
         
     }
 
-    useEffect(() => { 
+    useEffect(() => {
+        fetchCards();
+    }, [session]);
+
+    /*useEffect(() => { 
         if (setId) {
             fetchCards()
         }
-    }, [userId, setId]);
+    }, [userId, setId]);*/
+    
     
 
     const addCardHandler = (cardArray: Flashcards[]) => {
