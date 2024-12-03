@@ -12,9 +12,8 @@ import shuffleSet from '../images/shuffleSet.png';
 import Link from 'next/link';
 import Button from '../components/Button';
 import Timer from '../components/Timer';
-// import { useRouter } from 'next/router'; // uncomment when using real ids
-
-// lowk may not work lol but.................
+import { useSession } from "next-auth/react";
+import { useSetId } from '../context/SetIdContext';
 
 type Flashcards = {
   id: string;
@@ -23,30 +22,64 @@ type Flashcards = {
   image: string;
 };
 
+// Dummy data array for fallback or testing purposes
+const dummyArr: Flashcards[] = [
+  {
+    id: '1',
+    term: "Red Panda",
+    definition: "Mammal that is cute!",
+    image: "https://classroomclipart.com/images/gallery/Clipart/Animals/cute-small-baby-red-panda-animal-clipart.jpg",
+  },
+  {
+    id: '2',
+    term: "Starfish",
+    definition: "In the ocean omg",
+    image: "https://www.shutterstock.com/image-vector/vector-starfish-icon-under-sea-600nw-2279259637.jpg",
+  },
+  {
+    id: '3',
+    term: "Lion",
+    definition: "Lion king is a really good movie",
+    image: "https://classroomclipart.com/image/static2/preview2/cute-animal-lion-clipart-33697.jpg",
+  },
+  {
+    id: '4',
+    term: "Panda",
+    definition: "Black and white",
+    image: "https://denettefretz.com/wp-content/uploads/2018/07/Andy2.png",
+  },
+];
+
 export default function FlashcardSet() {
-  const [cards, setCards] = useState<Flashcards[]>([]);
+  // Cards, index, and flip state
+  const [cards, setCards] = useState<Flashcards[]>(dummyArr); // Default to dummy data to avoid empty UI initially
   const [currentIndex, setCurrentIndex] = useState(0); 
-  const [isFlipped, setIsFlipped] = useState(false);
-  const [loading, setLoading] = useState(true); // loading state for fetching data
+  const [isFlipped, setIsFlipped] = useState(false); 
+  const [loading, setLoading] = useState(true); // Loading state for fetching data
 
-  {/* // next.js router to get userId and setId dynamically
-  const router = useRouter();
-  const userId = router.query.userId; // extract userId from the route, if it's available
-  const setId = router.query.setId; // extract setId from the route, if it's available
-*/} 
+  // Get session and setId context values
+  const { data: session } = useSession(); 
+  const userId = session?.user?.id; 
+  const { setId } = useSetId(); 
 
-  const userId = "userIdHere"; // Replace with dummy userId
-  const setId = "setIdHere"; // Replace with dummy setId
-
+  // Fetch cards when component mounts or userId/setId changes
   useEffect(() => {
     const fetchCards = async () => {
+      if (!userId || !setId) {
+        console.log('User ID or Set ID is not available');
+        setLoading(false);
+        return; // Exit early if IDs are not available
+      }
+
       try {
         const response = await fetch(`/api/users/${userId}/sets/${setId}/cards`, {
           method: "GET",
         });
+
         if (!response.ok) {
           throw new Error("Failed to fetch cards");
         }
+
         const data = await response.json();
         setCards(data.cards); // Set cards from API response
       } catch (error) {
@@ -56,64 +89,16 @@ export default function FlashcardSet() {
       }
     };
 
-    fetchCards();
-  }, []);
-
-{/* // switch ^^ when userId and setId are available (not dummy version)
-  useEffect(() => {
-    const fetchCards = async () => {
-      try {
-        const response = await fetch(`/api/users/${userId}/sets/${setId}/cards`, {
-          method: "GET",
-        });
-        if (!response.ok) {
-          throw new Error("Failed to fetch cards");
-        }
-        const data = await response.json();
-        setCards(data.cards);
-      } catch (error) {
-        console.error("Error fetching cards:", error);
-      } finally {
-        setLoading(false);
-      }
-    };
-
     if (userId && setId) {
-      fetchCards(); // fetch cards only if userId and setId are available
+      fetchCards(); // Fetch cards only if userId and setId are available
     }
   }, [userId, setId]);
-*/}
-
-  const shuffleCards = () => {
-    const shuffled = [...cards].sort(() => Math.random() - 0.5);
-    setCards(shuffled);
-    setCurrentIndex(0);
-    setIsFlipped(false);
-  };
-
-  const flipCard = () => {
-    setIsFlipped((prev) => !prev);
-  };
-
-  const goToNextCard = () => {
-    if (currentIndex < cards.length - 1) {
-      setCurrentIndex((prev) => prev + 1);
-      setIsFlipped(false);
-    }
-  };
-
-  const goToPrevCard = () => {
-    if (currentIndex > 0) {
-      setCurrentIndex((prev) => prev - 1);
-      setIsFlipped(false);
-    }
-  };
 
   const [jazz, setJazz] = useState<HTMLAudioElement | null>(null);
   const [cafe, setCafe] = useState<HTMLAudioElement | null>(null);
   const [rainforest, setRainforest] = useState<HTMLAudioElement | null>(null);
   const [currentAudio, setCurrentAudio] = useState<HTMLAudioElement | null>(null);
-
+ 
   useEffect(() => {
     setJazz(new Audio('/audios/jazz.mp3'));
     setCafe(new Audio('/audios/restaurantsounds.mp3'));
@@ -141,9 +126,35 @@ export default function FlashcardSet() {
     }
   };
 
+  // Audio play handlers
   const startJazz = () => playAudio(jazz);
   const startCafe = () => playAudio(cafe);
   const startRainforest = () => playAudio(rainforest);
+
+  const shuffleCards = () => {
+    const shuffled = [...cards].sort(() => Math.random() - 0.5);
+    setCards(shuffled);
+    setCurrentIndex(0); // Reset to the first card
+    setIsFlipped(false); // Reset flip state
+  };
+
+  const flipCard = () => {
+    setIsFlipped((prev) => !prev);
+  };
+
+  const goToNextCard = () => {
+    if (currentIndex < cards.length - 1) {
+      setCurrentIndex((prev) => prev + 1);
+      setIsFlipped(false); // Reset flip state
+    }
+  };
+
+  const goToPrevCard = () => {
+    if (currentIndex > 0) {
+      setCurrentIndex((prev) => prev - 1);
+      setIsFlipped(false); // Reset flip state
+    }
+  };
 
   const currentCard = cards[currentIndex];
 
@@ -158,7 +169,7 @@ export default function FlashcardSet() {
 
       {/* Loading state */}
       {loading ? (
-        <p>Loading...</p>
+        <p>Loading...</p> // Display "Loading..." when cards are being fetched
       ) : (
         <>
           <div className={styles.mainCard}>
@@ -224,4 +235,3 @@ export default function FlashcardSet() {
     </div>
   );
 }
-
