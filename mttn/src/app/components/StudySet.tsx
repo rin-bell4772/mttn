@@ -12,14 +12,15 @@ interface StudySetProps {
 
 export default function StudySet(props: StudySetProps) {
     const { data: session } = useSession();
-    const { setId, updateSetId } = useSetId();
+    const { setId, updateSetId, title, updateTitle } = useSetId();
     const userId = session?.user?.id;
     const router = useRouter();
 
     const handleEdit = async (e: React.MouseEvent<HTMLButtonElement>) => {
         e.stopPropagation();
         updateSetId(props.id);
-        router.push('/createNewSet'); // 
+        updateTitle(props.title);
+        router.push('/createNewSet');
     };
 
     const handleDelete = async (e: React.MouseEvent<HTMLButtonElement>) => {

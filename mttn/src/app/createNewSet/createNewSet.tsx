@@ -55,7 +55,6 @@ export default function NewFlashcards({ cards }: cardData, props: Flashcards) {
                 body: JSON.stringify({ name: title }),
                 
             });
-            console.log("title in handleSave: '", title);
             return await response.json();
         } catch (error) {
             console.error("Error in handleSave: ", error);
