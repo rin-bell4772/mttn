@@ -36,7 +36,7 @@ export default function AddStudySet(props: StudySetProps) {
             if (newSet) {
                 console.log("New set saved:", newSet);
                 updateTitle(title);
-                setTitle(title);
+                setTitle("");
                 updateSetId(newSet.set._id);
                 console.log("Set ID from createSet:", newSet.set._id);
                 router.push('/createNewSet');
@@ -44,8 +44,6 @@ export default function AddStudySet(props: StudySetProps) {
         } catch (error) {
             console.error("Error handling save:", error);
         }
-
-
     };
 
     const createSet = async (userId: string, title: string) => {

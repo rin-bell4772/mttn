@@ -113,6 +113,7 @@ export default function NewFlashcards({ cards }: cardData, props: Flashcards) {
                     className={styles.titleInput}
                     placeholder="Enter a title"
                 />
+                { /* LINK IT TO FLASHCARD SET PAGE */ }
                 <Button className={styles.button} type="button" onClick={handleSave}>
                     Save
                 </Button>
