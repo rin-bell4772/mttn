@@ -37,6 +37,7 @@ export default function AddStudySet(props: StudySetProps) {
                 console.log("New set saved:", newSet);
                 setTitle("Untitled"); 
                 updateSetId(newSet._id);
+                console.log("Set ID from context:", setId);
                 router.push('/createNewSet');
             }
         } catch (error) {
